@@ -1,0 +1,10 @@
+.settings/
+.metadata/
+.project
+.cproject
+Debug/
+Release/
+debug/
+release/
+Build/
+build/
