@@ -46,12 +46,16 @@ int main(int argc, char** argv) {
 			delete (reader);
 		}
 
-		py->decRef();
+		if (py) {
+			py->decRef();
+		}
 
 		return (EXIT_FAILURE);
 	}
 
-	py->decRef();
+	if (py) {
+		py->decRef();
+	}
 
 	return (EXIT_SUCCESS);
 }
