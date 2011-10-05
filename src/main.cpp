@@ -33,10 +33,10 @@ int main(int argc, char** argv) {
 
 		if (reader) {
 			delete (reader);
+			reader = NULL;
 		}
 
 		py->visit(visitor);
-		py->decRef();
 
 	} catch (std::exception& e) {
 
@@ -46,20 +46,12 @@ int main(int argc, char** argv) {
 			delete (reader);
 		}
 
-		if (py) {
-			delete (py);
-		}
+		py->decRef();
 
 		return (EXIT_FAILURE);
 	}
 
-	if (reader) {
-		delete (reader);
-	}
-
-	if (py) {
-		delete (py);
-	}
+	py->decRef();
 
 	return (EXIT_SUCCESS);
 }
