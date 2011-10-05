@@ -86,6 +86,12 @@ reader::reader(const std::string& path) :
 
 	std::ifstream ifs(path.c_str(), std::ios::in | std::ios::binary);
 
+	if (!ifs.is_open()) {
+		std::stringstream stream;
+		stream << "Unable to open file : " << path;
+		throw std::runtime_error(stream.str().c_str());
+	}
+
 	m_stream = new istream(ifs);
 
 	ifs.close();
