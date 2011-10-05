@@ -47,6 +47,7 @@ int main(int argc, char** argv) {
 		py->decRef();
 
 	} catch (std::exception& e) {
+
 		std::cout << "ERROR - " << e.what() << std::endl;
 
 		if (reader) {
@@ -58,6 +59,14 @@ int main(int argc, char** argv) {
 		}
 
 		return (EXIT_FAILURE);
+	}
+
+	if (reader) {
+		delete (reader);
+	}
+
+	if (py) {
+		delete (py);
 	}
 
 	return (EXIT_SUCCESS);
