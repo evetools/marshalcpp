@@ -15,6 +15,8 @@
 #include "pydbrowdescriptor.h"
 #include "py.h"
 
+namespace evetools {
+
 namespace python {
 
 pydbrowdescriptor::pydbrowdescriptor() :
@@ -168,4 +170,6 @@ void pydbrowdescriptor::visit(pyvisitor& visitor) const {
 }
 
 } /* namespace python */
+
+} /* namespace evetools */
 

@@ -13,6 +13,8 @@
 
 #include "pycontainer.h"
 
+namespace evetools {
+
 namespace python {
 
 pycontainer::pycontainer() :
@@ -70,4 +72,6 @@ pycontainer::const_iterator pycontainer::end() const {
 }
 
 } /* namespace python */
+
+} /* namespace evetools */
 

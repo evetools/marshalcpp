@@ -13,6 +13,8 @@
 
 #include "pytuple.h"
 
+namespace evetools {
+
 namespace python {
 
 pytuple::pytuple() :
@@ -40,4 +42,6 @@ void pytuple::visit(pyvisitor& visitor) const {
 }
 
 } /* namespace python */
+
+} /* namespace evetools */
 

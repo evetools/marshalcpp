@@ -13,6 +13,8 @@
 
 #include "pyobjectex.h"
 
+namespace evetools {
+
 namespace python {
 
 pyobjectex::pyobjectex() :
@@ -89,4 +91,6 @@ void pyobjectex::visit(pyvisitor& visitor) const {
 }
 
 } /* namespace python */
+
+} /* namespace evetools */
 

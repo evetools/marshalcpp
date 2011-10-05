@@ -13,6 +13,8 @@
 
 #include "pylist.h"
 
+namespace evetools {
+
 namespace python {
 
 pylist::pylist() :
@@ -38,5 +40,7 @@ void pylist::push_back(pybase* object) {
 void pylist::visit(pyvisitor& visitor) const {
 	visitor.visitList(this);
 }
+
+} /* namespace evetools */
 
 } /* namespace python */

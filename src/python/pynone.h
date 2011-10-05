@@ -16,6 +16,8 @@
 
 #include "pybase.h"
 
+namespace evetools {
+
 namespace python {
 
 class pynone: public pybase {
@@ -32,6 +34,9 @@ private:
 	pynone(const pynone&);
 
 };
+
 } /* python */
+
+} /* namespace evetools */
 
 #endif /* PYTHON_PYNONE_H_ */

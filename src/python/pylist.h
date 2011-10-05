@@ -17,6 +17,8 @@
 
 #include "pycontainer.h"
 
+namespace evetools {
+
 namespace python {
 
 class pylist: public pycontainer {
@@ -36,5 +38,7 @@ private:
 };
 
 } /* python */
+
+} /* namespace evetools */
 
 #endif /* PYTHON_PYLIST_H_ */

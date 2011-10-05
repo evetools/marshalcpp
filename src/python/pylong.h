@@ -16,6 +16,8 @@
 
 #include "pybase.h"
 
+namespace evetools {
+
 namespace python {
 
 class pylong: public pybase {
@@ -38,5 +40,7 @@ private:
 };
 
 } /* python */
+
+} /* namespace evetools */
 
 #endif /* PYTHON_PYLONG_H_ */

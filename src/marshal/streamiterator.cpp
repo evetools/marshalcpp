@@ -13,6 +13,8 @@
 
 #include "streamiterator.h"
 
+namespace evetools {
+
 namespace marshal {
 
 streamiterator::streamiterator() :
@@ -153,3 +155,5 @@ streamiterator::size_type streamiterator::max() const {
 }
 
 } /* namespace marshal */
+
+} /* namespace evetools */

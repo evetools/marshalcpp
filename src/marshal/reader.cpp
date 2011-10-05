@@ -13,6 +13,8 @@
 
 #include "reader.h"
 
+namespace evetools {
+
 namespace marshal {
 
 python::pybase* (reader::* const reader::m_loadPyMethods[MASK + 1])() = {
@@ -1122,3 +1124,5 @@ python::pydbrow* reader::loadDBRow(const unsigned char* ibuffer,
 }
 
 } /* namespace marshal */
+
+} /* namespace evetools */

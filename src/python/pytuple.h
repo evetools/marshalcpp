@@ -16,6 +16,8 @@
 
 #include "pycontainer.h"
 
+namespace evetools {
+
 namespace python {
 
 class pytuple: public pycontainer {
@@ -35,5 +37,7 @@ private:
 };
 
 } /* python */
+
+} /* namespace evetools */
 
 #endif /* PYTHON_PYTUPLE_H_ */

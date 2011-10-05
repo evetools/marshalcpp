@@ -16,6 +16,8 @@
 
 #include "pybase.h"
 
+namespace evetools {
+
 namespace python {
 
 class pyint: public pybase {
@@ -38,5 +40,7 @@ private:
 };
 
 } /* python */
+
+} /* namespace evetools */
 
 #endif /* PYTHON_PYINT_H_ */

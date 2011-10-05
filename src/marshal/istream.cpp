@@ -14,6 +14,8 @@
 #include "istream.h"
 #include "streamiterator.h"
 
+namespace evetools {
+
 namespace marshal {
 
 istream::istream() :
@@ -90,3 +92,5 @@ istream::const_iterator istream::end() const {
 }
 
 } /* namespace marshal */
+
+} /* namespace evetools */

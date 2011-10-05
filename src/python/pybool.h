@@ -16,6 +16,8 @@
 
 #include "pybase.h"
 
+namespace evetools {
+
 namespace python {
 
 class pybool : public pybase {
@@ -36,6 +38,9 @@ public:
 
 	bool m_value;
 };
+
 } /* python */
+
+} /* namespace evetools */
 
 #endif /* PYTHON_PYBOOL_H_ */

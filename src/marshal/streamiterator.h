@@ -11,10 +11,12 @@
  * distribution).
  */
 
-#ifndef MARSHAL_STREAMITERATOR_H_
-#define MARSHAL_STREAMITERATOR_H_
+#ifndef EVETOOLS_MARSHAL_STREAMITERATOR_H_
+#define EVETOOLS_MARSHAL_STREAMITERATOR_H_
 
 #include "istream.h"
+
+namespace evetools {
 
 namespace marshal {
 
@@ -22,7 +24,7 @@ class streamiterator {
 
 public:
 
-	typedef istream::value_type			value_type;
+	typedef istream::value_type		value_type;
 	typedef istream::const_value_type	const_value_type;
 
 	typedef istream::pointer			pointer;
@@ -34,8 +36,8 @@ public:
 	typedef istream::difference_type	difference_type;
 	typedef istream::size_type			size_type;
 
-	streamiterator(const istream* stream, size_type position);
-	streamiterator(const istream* stream, size_type position, size_type max);
+	streamiterator(const marshal::istream* stream, size_type position);
+	streamiterator(const marshal::istream* stream, size_type position, size_type max);
 	streamiterator(const streamiterator& iterator);
 	streamiterator(const streamiterator& iterator, size_type max);
 	virtual ~streamiterator();
@@ -95,7 +97,7 @@ public:
 
 private:
 
-	const istream* m_stream;
+	const marshal::istream* m_stream;
 
 	size_type m_current;
 	size_type m_max;
@@ -103,4 +105,6 @@ private:
 
 } /* namespace marshal */
 
-#endif /* MARSHAL_STREAMITERATOR_H_ */
+} /* namespace evetools */
+
+#endif /* EVETOOLS_MARSHAL_STREAMITERATOR_H_ */

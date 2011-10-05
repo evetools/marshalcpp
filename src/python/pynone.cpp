@@ -13,6 +13,8 @@
 
 #include "pynone.h"
 
+namespace evetools {
+
 namespace python {
 
 pynone::pynone() :
@@ -32,4 +34,6 @@ void pynone::visit(pyvisitor& visitor) const {
 }
 
 } /* namespace python */
+
+} /* namespace evetools */
 

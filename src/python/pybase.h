@@ -28,6 +28,8 @@
 
 #include "pyvisitor.h"
 
+namespace evetools {
+
 namespace python {
 
 typedef enum pytypes {
@@ -197,6 +199,8 @@ private:
 	size_t m_refCounter;
 };
 
-} /* python */
+} /* namespace python */
+
+} /* namespace evetools */
 
 #endif /* PYTHON_PYBASE_H_ */

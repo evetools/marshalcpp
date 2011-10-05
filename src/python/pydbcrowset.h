@@ -16,6 +16,8 @@
 
 #include "pyobjectex.h"
 
+namespace evetools {
+
 namespace python {
 
 
@@ -36,5 +38,7 @@ private:
 };
 
 } /* python */
+
+} /* namespace evetools */
 
 #endif /* PYTHON_PYDBCROWSET_H_ */

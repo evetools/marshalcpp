@@ -13,6 +13,8 @@
 
 #include "pyint.h"
 
+namespace evetools {
+
 namespace python {
 
 pyint::pyint() :
@@ -38,6 +40,8 @@ uint32_t pyint::value() const {
 void pyint::visit(pyvisitor& visitor) const {
 	visitor.visitInt(this);
 }
+
+} /* namespace evetools */
 
 } /* namespace python */
 

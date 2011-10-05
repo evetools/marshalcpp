@@ -16,6 +16,8 @@
 
 #include "pybase.h"
 
+namespace evetools {
+
 namespace python {
 
 class pyobject: public pybase {
@@ -45,5 +47,7 @@ private:
 };
 
 } /* python */
+
+} /* namespace evetools */
 
 #endif /* PYTHON_PYOBJECT_H_ */

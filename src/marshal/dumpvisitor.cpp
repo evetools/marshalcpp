@@ -14,6 +14,8 @@
 #include "dumpvisitor.h"
 #include "../python/py.h"
 
+namespace evetools {
+
 namespace marshal {
 
 dumpvisitor::dumpvisitor(std::ostream& stream)  : m_stream(stream) {
@@ -226,4 +228,8 @@ const std::string dumpvisitor::indent() const {
 
 	return stream.str();
 }
-} /* namespace python */
+
+} /* namespace marshal */
+
+} /* namespace evetools */
+

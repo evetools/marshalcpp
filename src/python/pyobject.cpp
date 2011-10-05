@@ -13,6 +13,8 @@
 
 #include "pyobject.h"
 
+namespace evetools {
+
 namespace python {
 
 pyobject::pyobject() :
@@ -77,4 +79,6 @@ void pyobject::visit(pyvisitor& visitor) const {
 }
 
 } /* namespace python */
+
+} /* namespace evetools */
 

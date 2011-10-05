@@ -14,6 +14,8 @@
 #include "pyvisitor.h"
 #include "pybase.h"
 
+namespace evetools {
+
 namespace python {
 
 pyvisitor::pyvisitor() {
@@ -25,3 +27,5 @@ pyvisitor::~pyvisitor() {
 }
 
 } /* namespace python */
+
+} /* namespace evetools */

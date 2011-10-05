@@ -13,6 +13,8 @@
 
 #include "pylong.h"
 
+namespace evetools {
+
 namespace python {
 
 pylong::pylong() :
@@ -41,6 +43,8 @@ uint64_t pylong::value() const {
 void pylong::visit(pyvisitor& visitor) const {
 	visitor.visitLong(this);
 }
+
+} /* namespace evetools */
 
 } /* namespace python */
 

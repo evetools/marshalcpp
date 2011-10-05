@@ -11,11 +11,13 @@
  * distribution).
  */
 
-#ifndef MARSHAL_STRINGS_H_
-#define MARSHAL_STRINGS_H_
+#ifndef EVETOOLS_MARSHAL_STRINGS_H_
+#define EVETOOLS_MARSHAL_STRINGS_H_
 
 #include <string>
 #include <map>
+
+namespace evetools {
 
 namespace marshal {
 
@@ -39,4 +41,6 @@ private:
 
 } /* namespace marshal */
 
-#endif /* MARSHAL_STRINGS_H_ */
+} /* namespace evetools */
+
+#endif /* EVETOOLS_MARSHAL_STRINGS_H_ */

@@ -16,6 +16,8 @@
 
 #include "pycontainer.h"
 
+namespace evetools {
+
 namespace python {
 
 class pydict: public pycontainer {
@@ -36,5 +38,7 @@ private:
 };
 
 } /* python */
+
+} /* namespace evetools */
 
 #endif /* PYTHON_PYDICT_H_ */

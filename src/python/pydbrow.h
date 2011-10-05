@@ -16,6 +16,8 @@
 
 #include "pyobjectex.h"
 
+namespace evetools {
+
 namespace python {
 
 
@@ -35,5 +37,7 @@ private:
 };
 
 } /* python */
+
+} /* namespace evetools */
 
 #endif /* PYTHON_PYDBROW_H_ */

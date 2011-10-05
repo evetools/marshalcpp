@@ -11,10 +11,12 @@
  * distribution).
  */
 
-#ifndef MARSHAL_DUMPVISITOR_H_
-#define MARSHAL_DUMPVISITOR_H_
+#ifndef EVETOOLS_MARSHAL_DUMPVISITOR_H_
+#define EVETOOLS_MARSHAL_DUMPVISITOR_H_
 
 #include "../python/pyvisitor.h"
+
+namespace evetools {
 
 namespace marshal {
 
@@ -62,4 +64,6 @@ protected:
 
 } /* namespace marshal */
 
-#endif /* MARSHAL_DUMPVISITOR_H_ */
+} /* namespace evetools */
+
+#endif /* EVETOOLS_MARSHAL_DUMPVISITOR_H_ */

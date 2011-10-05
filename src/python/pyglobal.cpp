@@ -13,6 +13,8 @@
 
 #include "pyglobal.h"
 
+namespace evetools {
+
 namespace python {
 
 pyglobal::pyglobal() :
@@ -36,6 +38,8 @@ pyglobal::~pyglobal() {
 void pyglobal::visit(pyvisitor& visitor) const {
 	visitor.visitGlobal(this);
 }
+
+} /* namespace evetools */
 
 } /* namespace python */
 

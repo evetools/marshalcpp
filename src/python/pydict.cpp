@@ -13,6 +13,8 @@
 
 #include "pydict.h"
 
+namespace evetools {
+
 namespace python {
 
 pydict::pydict() :
@@ -55,4 +57,6 @@ void pydict::visit(pyvisitor& visitor) const {
 }
 
 } /* namespace python */
+
+} /* namespace evetools */
 

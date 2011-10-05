@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef MARSHAL_ISTREAM_H_
-#define MARSHAL_ISTREAM_H_
+#ifndef EVETOOLS_MARSHAL_ISTREAM_H_
+#define EVETOOLS_MARSHAL_ISTREAM_H_
 
 #include <cstring>
 #include <iostream>
@@ -29,6 +29,8 @@
 #include <stdint.h>
 
 #include "../common/utf8.h"
+
+namespace evetools {
 
 namespace marshal {
 
@@ -98,4 +100,6 @@ private:
 
 } /* namespace marshal */
 
-#endif /* MARSHAL_ISTREAM_H_ */
+} /* namespace evetools */
+
+#endif /* EVETOOLS_MARSHAL_ISTREAM_H_ */

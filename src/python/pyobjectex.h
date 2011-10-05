@@ -17,6 +17,8 @@
 #include "pydict.h"
 #include "pylist.h"
 
+namespace evetools {
+
 namespace python {
 
 
@@ -63,5 +65,7 @@ private:
 };
 
 } /* python */
+
+} /* namespace evetools */
 
 #endif /* PYTHON_PY_H_ */

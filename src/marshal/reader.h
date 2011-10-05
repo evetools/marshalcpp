@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef MARSHAL_READER_H_
-#define MARSHAL_READER_H_
+#ifndef EVETOOLS_MARSHAL_READER_H_
+#define EVETOOLS_MARSHAL_READER_H_
 
 #include "streamiterator.h"
 
@@ -20,6 +20,8 @@
 
 #include "dumpvisitor.h"
 #include "strings.h"
+
+namespace evetools {
 
 namespace marshal {
 
@@ -154,4 +156,6 @@ private:
 
 } /* namespace marshal */
 
-#endif /* MARSHAL_READER_H_ */
+} /* namespace evetools */
+
+#endif /* EVETOOLS_MARSHAL_READER_H_ */

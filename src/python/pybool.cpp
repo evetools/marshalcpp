@@ -13,6 +13,8 @@
 
 #include "pybool.h"
 
+namespace evetools {
+
 namespace python {
 
 pybool::pybool() :
@@ -40,4 +42,6 @@ void pybool::visit(pyvisitor& visitor) const {
 }
 
 } /* namespace python */
+
+} /* namespace evetools */
 

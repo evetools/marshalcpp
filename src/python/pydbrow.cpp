@@ -13,6 +13,8 @@
 
 #include "pydbrow.h"
 
+namespace evetools {
+
 namespace python {
 
 pydbrow::pydbrow() :
@@ -32,4 +34,6 @@ void pydbrow::visit(pyvisitor& visitor) const {
 }
 
 } /* namespace python */
+
+} /* namespace evetools */
 

@@ -13,6 +13,8 @@
 
 #include "pydbcrowset.h"
 
+namespace evetools {
+
 namespace python {
 
 pydbcrowset::pydbcrowset() :
@@ -36,4 +38,6 @@ void pydbcrowset::visit(pyvisitor& visitor) const {
 }
 
 } /* namespace python */
+
+} /* namespace evetools */
 

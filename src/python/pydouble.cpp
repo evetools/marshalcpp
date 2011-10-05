@@ -13,6 +13,8 @@
 
 #include "pydouble.h"
 
+namespace evetools {
+
 namespace python {
 
 pydouble::pydouble() :
@@ -42,6 +44,7 @@ void pydouble::visit(pyvisitor& visitor) const {
 	visitor.visitDouble(this);
 }
 
-
 } /* namespace python */
+
+} /* namespace evetools */
 

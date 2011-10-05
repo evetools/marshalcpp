@@ -13,6 +13,8 @@
 
 #include "pybuffer.h"
 
+namespace evetools {
+
 namespace python {
 
 pybuffer::pybuffer() :
@@ -66,3 +68,4 @@ void pybuffer::visit(pyvisitor& visitor) const {
 
 } /* namespace python */
 
+} /* namespace evetools */

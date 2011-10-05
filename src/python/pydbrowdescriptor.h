@@ -16,6 +16,8 @@
 
 #include "pyobjectex.h"
 
+namespace evetools {
+
 namespace python {
 
 class pydbrowdescriptor: public pyobjectex {
@@ -53,5 +55,7 @@ private:
 };
 
 } /* python */
+
+} /* namespace evetools */
 
 #endif /* PYTHON_PYDBROWDESCRIPTOR_H_ */

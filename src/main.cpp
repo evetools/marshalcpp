@@ -23,12 +23,12 @@ int main(int argc, char** argv) {
 		return (EXIT_FAILURE);
 	}
 
-	marshal::reader* reader = NULL;
-	python::pybase* py = NULL;
-	marshal::dumpvisitor visitor;
+	evetools::marshal::reader* reader = NULL;
+	evetools::python::pybase* py = NULL;
+	evetools::marshal::dumpvisitor visitor;
 
 	try {
-		reader = new marshal::reader(argv[1]);
+		reader = new evetools::marshal::reader(argv[1]);
 		py = reader->read();
 
 		if (reader) {

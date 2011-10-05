@@ -18,6 +18,8 @@
 #include <iomanip>
 #include <vector>
 
+namespace evetools {
+
 namespace python {
 
 class pybase;
@@ -66,5 +68,7 @@ public:
 };
 
 } /* namespace python */
+
+} /* namespace evetools */
 
 #endif /* PYTHON_PYVISITOR_H_ */

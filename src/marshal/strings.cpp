@@ -13,6 +13,8 @@
 
 #include "strings.h"
 
+namespace evetools {
+
 namespace marshal {
 
 bool strings::m_init = false;
@@ -308,3 +310,5 @@ bool strings::has(unsigned int id) {
 }
 
 } /* namespace marshal */
+
+} /* namespace evetools */

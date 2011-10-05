@@ -13,6 +13,8 @@
 
 #include "py.h"
 
+namespace evetools {
+
 namespace python {
 
 pybase::pybase() :
@@ -278,3 +280,4 @@ const pydbrow* pybase::asDBRow() const {
 
 } /* namespace python */
 
+} /* namespace evetools */

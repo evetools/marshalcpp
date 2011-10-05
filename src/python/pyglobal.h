@@ -16,6 +16,8 @@
 
 #include "pybuffer.h"
 
+namespace evetools {
+
 namespace python {
 
 class pyglobal: public pybuffer {
@@ -32,6 +34,9 @@ private:
 	pyglobal();
 	pyglobal(const pyglobal&);
 };
+
 } /* python */
+
+} /* namespace evetools */
 
 #endif /* PYTHON_PYGLOBAL_H_ */
