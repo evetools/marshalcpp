@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYDOUBLE_H_
-#define PYTHON_PYDOUBLE_H_
+#ifndef EVETOOLS_PYTHON_PYDOUBLE_H_
+#define EVETOOLS_PYTHON_PYDOUBLE_H_
 
 #include "pybase.h"
 
@@ -39,8 +39,8 @@ private:
 	double m_value;
 };
 
-} /* python */
+} /* namespace python */
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYDOUBLE_H_ */
+#endif /* EVETOOLS_PYTHON_PYDOUBLE_H_ */

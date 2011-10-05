@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYLONG_H_
-#define PYTHON_PYLONG_H_
+#ifndef EVETOOLS_PYTHON_PYLONG_H_
+#define EVETOOLS_PYTHON_PYLONG_H_
 
 #include "pybase.h"
 
@@ -39,8 +39,8 @@ private:
 	uint64_t m_value;
 };
 
-} /* python */
+} /* namespace python */
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYLONG_H_ */
+#endif /* EVETOOLS_PYTHON_PYLONG_H_ */

@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYVISITOR_H_
-#define PYTHON_PYVISITOR_H_
+#ifndef EVETOOLS_PYTHON_PYVISITOR_H_
+#define EVETOOLS_PYTHON_PYVISITOR_H_
 
 #include <iostream>
 #include <iomanip>
@@ -71,4 +71,4 @@ public:
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYVISITOR_H_ */
+#endif /* EVETOOLS_PYTHON_PYVISITOR_H_ */

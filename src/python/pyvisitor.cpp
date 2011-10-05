@@ -11,8 +11,7 @@
  * distribution).
  */
 
-#include "pyvisitor.h"
-#include "pybase.h"
+#include "py.h"
 
 namespace evetools {
 

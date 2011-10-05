@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYBASE_H_
-#define PYTHON_PYBASE_H_
+#ifndef EVETOOLS_PYTHON_PYBASE_H_
+#define EVETOOLS_PYTHON_PYBASE_H_
 
 #include <cstring>
 #include <cassert>
@@ -203,4 +203,4 @@ private:
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYBASE_H_ */
+#endif /* EVETOOLS_PYTHON_PYBASE_H_ */

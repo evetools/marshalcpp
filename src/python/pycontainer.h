@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYCONTAINER_H_
-#define PYTHON_PYCONTAINER_H_
+#ifndef EVETOOLS_PYTHON_PYCONTAINER_H_
+#define EVETOOLS_PYTHON_PYCONTAINER_H_
 
 #include "pybase.h"
 
@@ -55,8 +55,8 @@ private:
 	pycontainer(const pycontainer&);
 };
 
-} /* python */
+} /* namespace python */
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYCONTAINER_H_ */
+#endif /* EVETOOLS_PYTHON_PYCONTAINER_H_ */

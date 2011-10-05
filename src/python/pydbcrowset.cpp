@@ -11,7 +11,7 @@
  * distribution).
  */
 
-#include "pydbcrowset.h"
+#include "py.h"
 
 namespace evetools {
 

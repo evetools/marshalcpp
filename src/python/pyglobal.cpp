@@ -11,7 +11,7 @@
  * distribution).
  */
 
-#include "pyglobal.h"
+#include "py.h"
 
 namespace evetools {
 

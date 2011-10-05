@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PY_H_
-#define PYTHON_PY_H_
+#ifndef EVETOOLS_PYTHON_PY_H_
+#define EVETOOLS_PYTHON_PY_H_
 
 #include "pybase.h"
 #include "pybuffer.h"
@@ -35,4 +35,4 @@
 #include "pydbrow.h"
 #include "pyvisitor.h"
 
-#endif /* PYTHON_PY_H_ */
+#endif /* EVETOOLS_PYTHON_PY_H_ */

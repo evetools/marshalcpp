@@ -11,7 +11,7 @@
  * distribution).
  */
 
-#include "pydouble.h"
+#include "py.h"
 
 namespace evetools {
 

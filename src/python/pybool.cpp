@@ -11,7 +11,7 @@
  * distribution).
  */
 
-#include "pybool.h"
+#include "py.h"
 
 namespace evetools {
 

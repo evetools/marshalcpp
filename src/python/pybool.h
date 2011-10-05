@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYBOOL_H_
-#define PYTHON_PYBOOL_H_
+#ifndef EVETOOLS_PYTHON_PYBOOL_H_
+#define EVETOOLS_PYTHON_PYBOOL_H_
 
 #include "pybase.h"
 
@@ -39,8 +39,8 @@ public:
 	bool m_value;
 };
 
-} /* python */
+} /* namespace python */
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYBOOL_H_ */
+#endif /* EVETOOLS_PYTHON_PYBOOL_H_ */

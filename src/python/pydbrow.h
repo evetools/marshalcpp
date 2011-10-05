@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYDBROW_H_
-#define PYTHON_PYDBROW_H_
+#ifndef EVETOOLS_PYTHON_PYDBROW_H_
+#define EVETOOLS_PYTHON_PYDBROW_H_
 
 #include "pyobjectex.h"
 
@@ -36,8 +36,8 @@ private:
 	pydbrow(const pydbrow&);
 };
 
-} /* python */
+} /* namespace python */
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYDBROW_H_ */
+#endif /* EVETOOLS_PYTHON_PYDBROW_H_ */

@@ -11,7 +11,7 @@
  * distribution).
  */
 
-#include "pynone.h"
+#include "py.h"
 
 namespace evetools {
 

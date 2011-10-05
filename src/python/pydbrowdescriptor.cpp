@@ -11,8 +11,6 @@
  * distribution).
  */
 
-#include "../marshal/dumpvisitor.h"
-#include "pydbrowdescriptor.h"
 #include "py.h"
 
 namespace evetools {

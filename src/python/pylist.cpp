@@ -11,7 +11,7 @@
  * distribution).
  */
 
-#include "pylist.h"
+#include "py.h"
 
 namespace evetools {
 

@@ -11,7 +11,7 @@
  * distribution).
  */
 
-#include "pydict.h"
+#include "py.h"
 
 namespace evetools {
 

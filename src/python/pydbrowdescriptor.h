@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYDBROWDESCRIPTOR_H_
-#define PYTHON_PYDBROWDESCRIPTOR_H_
+#ifndef EVETOOLS_PYTHON_PYDBROWDESCRIPTOR_H_
+#define EVETOOLS_PYTHON_PYDBROWDESCRIPTOR_H_
 
 #include "pyobjectex.h"
 
@@ -54,8 +54,8 @@ private:
 	size_t m_size;
 };
 
-} /* python */
+} /* namespace python */
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYDBROWDESCRIPTOR_H_ */
+#endif /* EVETOOLS_PYTHON_PYDBROWDESCRIPTOR_H_ */

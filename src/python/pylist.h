@@ -12,8 +12,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYLIST_H_
-#define PYTHON_PYLIST_H_
+#ifndef EVETOOLS_PYTHON_PYLIST_H_
+#define EVETOOLS_PYTHON_PYLIST_H_
 
 #include "pycontainer.h"
 
@@ -37,8 +37,8 @@ private:
 	pylist(const pylist&);
 };
 
-} /* python */
+} /* namespace python */
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYLIST_H_ */
+#endif /* EVETOOLS_PYTHON_PYLIST_H_ */

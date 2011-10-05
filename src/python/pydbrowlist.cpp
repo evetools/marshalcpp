@@ -11,7 +11,7 @@
  * distribution).
  */
 
-#include "pydbrowlist.h"
+#include "py.h"
 
 namespace evetools {
 

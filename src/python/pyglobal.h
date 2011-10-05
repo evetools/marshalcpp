@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYGLOBAL_H_
-#define PYTHON_PYGLOBAL_H_
+#ifndef EVETOOLS_PYTHON_PYGLOBAL_H_
+#define EVETOOLS_PYTHON_PYGLOBAL_H_
 
 #include "pybuffer.h"
 
@@ -35,8 +35,8 @@ private:
 	pyglobal(const pyglobal&);
 };
 
-} /* python */
+} /* namespace python */
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYGLOBAL_H_ */
+#endif /* EVETOOLS_PYTHON_PYGLOBAL_H_ */

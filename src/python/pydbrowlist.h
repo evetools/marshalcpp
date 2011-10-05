@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYDBROWLIST_H_
-#define PYTHON_PYDBROWLIST_H_
+#ifndef EVETOOLS_PYTHON_PYDBROWLIST_H_
+#define EVETOOLS_PYTHON_PYDBROWLIST_H_
 
 #include "pyobjectex.h"
 
@@ -37,8 +37,8 @@ private:
 	pydbrowlist(const pydbrowlist&);
 };
 
-} /* python */
+} /* namespace python */
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYDBROWLIST_H_ */
+#endif /* EVETOOLS_PYTHON_PYDBROWLIST_H_ */

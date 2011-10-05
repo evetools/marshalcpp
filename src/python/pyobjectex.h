@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYOBJECTEX_H_
-#define PYTHON_PYOBJECTEX_H_
+#ifndef EVETOOLS_PYTHON_PYOBJECTEX_H_
+#define EVETOOLS_PYTHON_PYOBJECTEX_H_
 
 #include "pydict.h"
 #include "pylist.h"
@@ -64,8 +64,8 @@ private:
 	bool m_reduce;
 };
 
-} /* python */
+} /* namespace python */
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PY_H_ */
+#endif /* EVETOOLS_PYTHON_PY_H_ */

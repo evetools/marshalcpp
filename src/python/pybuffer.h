@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYBUFFER_H_
-#define PYTHON_PYBUFFER_H_
+#ifndef EVETOOLS_PYTHON_PYBUFFER_H_
+#define EVETOOLS_PYTHON_PYBUFFER_H_
 
 #include "pybase.h"
 
@@ -48,8 +48,8 @@ private:
 	bool m_unicode;
 };
 
-} /* python */
+} /* namespace python */
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYBUFFER_H_ */
+#endif /* EVETOOLS_PYTHON_PYBUFFER_H_ */

@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYDICT_H_
-#define PYTHON_PYDICT_H_
+#ifndef EVETOOLS_PYTHON_PYDICT_H_
+#define EVETOOLS_PYTHON_PYDICT_H_
 
 #include "pycontainer.h"
 
@@ -37,8 +37,8 @@ private:
 	pydict(const pydict&);
 };
 
-} /* python */
+} /* namespace python */
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYDICT_H_ */
+#endif /* EVETOOLS_PYTHON_PYDICT_H_ */

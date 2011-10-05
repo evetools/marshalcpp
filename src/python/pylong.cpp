@@ -11,7 +11,7 @@
  * distribution).
  */
 
-#include "pylong.h"
+#include "py.h"
 
 namespace evetools {
 

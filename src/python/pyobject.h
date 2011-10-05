@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYOBJECT_H_
-#define PYTHON_PYOBJECT_H_
+#ifndef EVETOOLS_PYTHON_PYOBJECT_H_
+#define EVETOOLS_PYTHON_PYOBJECT_H_
 
 #include "pybase.h"
 
@@ -46,8 +46,8 @@ private:
 
 };
 
-} /* python */
+} /* namespace python */
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYOBJECT_H_ */
+#endif /* EVETOOLS_PYTHON_PYOBJECT_H_ */

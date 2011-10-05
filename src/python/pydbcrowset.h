@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYDBCROWSET_H_
-#define PYTHON_PYDBCROWSET_H_
+#ifndef EVETOOLS_PYTHON_PYDBCROWSET_H_
+#define EVETOOLS_PYTHON_PYDBCROWSET_H_
 
 #include "pyobjectex.h"
 
@@ -37,8 +37,8 @@ private:
 	pydbcrowset(const pydbcrowset&);
 };
 
-} /* python */
+} /* namespace python */
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYDBCROWSET_H_ */
+#endif /* EVETOOLS_PYTHON_PYDBCROWSET_H_ */

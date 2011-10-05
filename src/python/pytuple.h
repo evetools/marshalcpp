@@ -11,8 +11,8 @@
  * distribution).
  */
 
-#ifndef PYTHON_PYTUPLE_H_
-#define PYTHON_PYTUPLE_H_
+#ifndef EVETOOLS_PYTHON_PYTUPLE_H_
+#define EVETOOLS_PYTHON_PYTUPLE_H_
 
 #include "pycontainer.h"
 
@@ -36,8 +36,8 @@ private:
 	pytuple(const pytuple&);
 };
 
-} /* python */
+} /* namespace python */
 
 } /* namespace evetools */
 
-#endif /* PYTHON_PYTUPLE_H_ */
+#endif /* EVETOOLS_PYTHON_PYTUPLE_H_ */

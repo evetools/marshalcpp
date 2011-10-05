@@ -11,7 +11,7 @@
  * distribution).
  */
 
-#include "pyint.h"
+#include "py.h"
 
 namespace evetools {
 

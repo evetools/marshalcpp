@@ -11,7 +11,7 @@
  * distribution).
  */
 
-#include "pyobjectex.h"
+#include "py.h"
 
 namespace evetools {
 

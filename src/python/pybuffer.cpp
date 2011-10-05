@@ -11,7 +11,7 @@
  * distribution).
  */
 
-#include "pybuffer.h"
+#include "py.h"
 
 namespace evetools {
 
