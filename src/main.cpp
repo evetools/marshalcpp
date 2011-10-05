@@ -13,16 +13,8 @@
 
 #include <cstdio>
 #include <cstdlib>
-#include <sys/time.h>
 
 #include <marshal/reader.h>
-
-long timevaldiff(struct timeval *starttime, struct timeval *finishtime) {
-	long msec;
-	msec = (finishtime->tv_sec - starttime->tv_sec) * 1000;
-	msec += (finishtime->tv_usec - starttime->tv_usec) / 1000;
-	return msec;
-}
 
 int main(int argc, char** argv) {
 

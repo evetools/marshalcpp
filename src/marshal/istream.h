@@ -24,6 +24,7 @@
 #include <limits>
 #include <cassert>
 #include <cwchar>
+#include <stack>
 
 #include <stdint.h>
 

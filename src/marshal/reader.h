@@ -14,16 +14,12 @@
 #ifndef MARSHAL_READER_H_
 #define MARSHAL_READER_H_
 
-#include <stack>
-#include <wchar.h>
-
 #include "streamiterator.h"
 
 #include "../python/py.h"
-#include "dumpvisitor.h"
 
+#include "dumpvisitor.h"
 #include "strings.h"
-#include "iconv.h"
 
 namespace marshal {
 

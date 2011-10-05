@@ -24,8 +24,6 @@
 #include <map>
 #include <sstream>
 
-#include <stdint.h>
-
 #include <zlib.h>
 
 #include "pyvisitor.h"
