@@ -47,7 +47,6 @@ void pydict::push_back(pybase* object) {
 		stream << "Invalid NULL argument passed to pydict::push_back.";
 		throw pyNullException(stream.str());
 	}
-	object->incRef();
 	pycontainer::push_back(object);
 }
 
