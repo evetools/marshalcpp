@@ -190,6 +190,7 @@ pytuple* pybase::asTuple() {
 	assert(isTuple());
 	return (reinterpret_cast<pytuple*>(this));
 }
+
 const pytuple* pybase::asTuple() const {
 	assert(isTuple());
 	return (reinterpret_cast<const pytuple*>(this));

@@ -128,6 +128,8 @@ protected:
 			bool reduce);
 	void replace(python::pybase* objectOld, python::pybase* objectNew);
 
+	bool isStored(python::pybase* object);
+
 	python::pybase* findDBRowDescriptor(python::pyobjectex* object) const;
 
 	void zerouncompress(const unsigned char* buffer, int size,
@@ -135,6 +137,9 @@ protected:
 
 	python::pydbrow* loadDBRow(const unsigned char* buffer, const size_t size,
 			python::pydbrowdescriptor* descriptor);
+
+	void cleanValues(std::map<const python::pybase*, python::pybase*>* values);
+
 private:
 
 	reader();

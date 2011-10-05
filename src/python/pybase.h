@@ -73,30 +73,38 @@ typedef enum dbtypes {
 	DBTYPE_WSTRING = 130
 } dbtypes;
 
-class loadPyException : public std::runtime_error {
+class loadPyException: public std::runtime_error {
 
 public:
 
-	loadPyException(const std::string& msg) : std::runtime_error(msg) {}
-    virtual ~loadPyException() throw() {}
+	loadPyException(const std::string& msg) :
+			std::runtime_error(msg) {
+	}
+	virtual ~loadPyException() throw () {
+	}
 };
 
-class loadPyNullException : public loadPyException {
+class loadPyNullException: public loadPyException {
 
 public:
 
-	loadPyNullException(const std::string& msg) : loadPyException(msg) {}
-    virtual ~loadPyNullException() throw() {}
+	loadPyNullException(const std::string& msg) :
+			loadPyException(msg) {
+	}
+	virtual ~loadPyNullException() throw () {
+	}
 };
 
-class pyNullException : public loadPyNullException {
+class pyNullException: public loadPyNullException {
 
 public:
 
-	pyNullException(const std::string& msg) : loadPyNullException(msg) {}
-    virtual ~pyNullException() throw() {}
+	pyNullException(const std::string& msg) :
+			loadPyNullException(msg) {
+	}
+	virtual ~pyNullException() throw () {
+	}
 };
-
 
 class pybase {
 

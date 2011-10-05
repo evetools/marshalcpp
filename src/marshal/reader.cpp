@@ -141,7 +141,9 @@ python::pybase* reader::stored(size_t position) {
 python::pyobjectex* reader::replace(python::pybase* header, python::pyobjectex* object,
 		bool reduce) {
 
-	if (header->isTuple() && header->asTuple()->size() > 0) {
+	if (header && object && object->isObjectEx()
+			&& header->isTuple() && header->asTuple()->size() > 0) {
+
 		if (header->asTuple()->at(0)->isGlobal()) {
 			if (header->asTuple()->at(0)->asGlobal()->str().compare(
 					"blue.DBRowDescriptor") == 0) {
@@ -197,12 +199,27 @@ void reader::replace(python::pybase* objectOld, python::pybase* objectNew) {
 	}
 }
 
+bool reader::isStored(python::pybase* object) {
+
+	std::vector<python::pybase*>::iterator iterator = m_storage->begin();
+	std::vector<python::pybase*>::iterator end = m_storage->end();
+
+	for (; iterator != end; ++iterator) {
+
+		if ((*iterator) == object) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
 python::pybase* reader::read() {
 
 	const uint8_t protocol = m_iterator.read<uint8_t>();
 
 	if (protocol != TYPE_PROTOCOL) {
-		throw std::runtime_error("invalid stream protocol");
+		throw std::runtime_error("Invalid stream.");
 	}
 
 	const uint32_t shared = m_iterator.read<uint32_t>();
@@ -217,11 +234,7 @@ python::pybase* reader::read() {
 
 	python::pybase* py = NULL;
 
-	try {
-		py = loadPy();
-	} catch(std::exception& exception) {
-		throw exception;
-	}
+	py = loadPy();
 
 	return (py);
 }
@@ -386,16 +399,21 @@ python::pybase* reader::loadBufferN(size_t size) {
 			delete[] buffer;
 
 			if (ubuffer[0] == TYPE_PROTOCOL) {
+
 				istream stream((char*) ubuffer, usize);
+
 				reader subreader(stream);
 
 				delete[] ubuffer;
 
 				return (subreader.read());
 			} else {
+
 				python::pybuffer* element = new python::pybuffer(
 						(char*) ubuffer, usize);
+
 				delete[] ubuffer;
+
 				return (element);
 			}
 		} else {
@@ -431,6 +449,7 @@ python::pybase* reader::loadUnicodeN(size_t size) {
 		for (; begin != end; ++begin) {
 			stream << (*begin);
 		}
+
 		element = new python::pybuffer(stream.str().c_str(),
 				stream.str().length());
 	} else {
@@ -588,6 +607,7 @@ python::pybase* reader::loadDict() {
 			stream << "Loading DICT ";
 			if (value) {
 				stream << "key";
+				// handle case where value is a reference to a stired object
 				container->push_back(value);
 			} else {
 				stream << "value";
@@ -678,6 +698,9 @@ python::pybase* reader::loadNewClassObject(bool reduce) {
 	} catch (std::exception& exception) {
 		std::stringstream stream;
 		stream << "Loading OBJECTEX header " << std::endl << exception.what();
+		if (!isStored(header)) {
+			header->decRef();
+		}
 		object->decRef();
 		throw loadErrorException(stream.str());
 	}
@@ -705,6 +728,7 @@ python::pybase* reader::loadNewClassObject(bool reduce) {
 			stream << "Loading OBJECTEX DICT ";
 			if (value) {
 				stream << "key";
+				// handle case where value is a reference to a stired object
 				object->push_back_dict(value);
 			} else {
 				stream << "value";
@@ -773,6 +797,7 @@ python::pybase* reader::loadSubStream() {
 
 	return (element);
 }
+
 size_t reader::loadLength() {
 
 	size_t size = m_iterator.read<uint8_t>();
@@ -808,8 +833,9 @@ python::pybase* reader::loadPacked() {
 		std::stringstream stream;
 		stream << "Loading PACKED header - not DBRowDescriptor.";
 		stream << std::endl;
-		dumpvisitor visitor(stream);
-		header->visit(visitor);
+		if (!isStored(header)) {
+			header->decRef();
+		}
 		throw loadNullException(stream.str());
 	}
 
@@ -821,14 +847,18 @@ python::pybase* reader::loadPacked() {
 		std::stringstream stream;
 		stream << "Loading PACKED buffer ";
 		stream << std::endl << exception.what();
-		descriptor->decRef();
+		if (!isStored(descriptor)) {
+			descriptor->decRef();
+		}
 		throw loadNullException(stream.str());
 	}
 
 	if (!buffer->isBuffer()) {
 		std::stringstream stream;
 		stream << "Loading PACKED buffer - not a pybuffer object";
-		descriptor->decRef();
+		if (!isStored(descriptor)) {
+			descriptor->decRef();
+		}
 		buffer->decRef();
 		throw loadNullException(stream.str());
 	}
@@ -850,6 +880,9 @@ python::pybase* reader::loadPacked() {
 		stream << "Loading DBROW.";
 		stream << std::endl << exception.what();
 		delete[] obuffer;
+		if (!isStored(descriptor)) {
+			descriptor->decRef();
+		}
 		throw loadNullException(stream.str());
 	}
 
@@ -947,6 +980,20 @@ void reader::zerouncompress(const unsigned char* buffer, int size,
 	}
 }
 
+void reader::cleanValues(std::map<const python::pybase*, python::pybase*>* values) {
+
+	if (!values) {
+		return;
+	}
+
+	std::map<const python::pybase*, python::pybase*>::iterator iterator = values->begin();
+	std::map<const python::pybase*, python::pybase*>::iterator end = values->end();
+
+	for (; iterator != end; ++iterator) {
+		(*iterator).second->decRef();
+	}
+}
+
 python::pydbrow* reader::loadDBRow(const unsigned char* ibuffer,
 		const size_t size, python::pydbrowdescriptor* descriptor) {
 
@@ -966,69 +1013,79 @@ python::pydbrow* reader::loadDBRow(const unsigned char* ibuffer,
 	uint32_t boolcount = 0;
 	uint8_t boolstore = 0;
 
-	std::map<const python::pybase*, python::pybase*> values;
+	std::map<const python::pybase*, python::pybase*>* values
+		= new std::map<const python::pybase*, python::pybase*>();
+
 	const python::pytuple* tuple = NULL;
 	size_t position = 0;
 
-	for (; iterator != end; ++iterator) {
+	try {
+		for (; iterator != end; ++iterator) {
 
-		position = iterator->second;
+			position = iterator->second;
 
-		tuple = descriptor->get(position)->asTuple();
+			tuple = descriptor->get(position)->asTuple();
 
-		switch (tuple->at(1)->asInt()->value()) {
+			switch (tuple->at(1)->asInt()->value()) {
 
-		case python::DBTYPE_UINT8:
-			values.insert(std::pair<python::pybase*, python::pybase*>(
-					(python::pybase*)tuple,
-					new python::pyint((int) siterator.read<uint8_t>())));
-			break;
-		case python::DBTYPE_INT16:
-			values.insert(std::pair<python::pybase*, python::pybase*>(
-					(python::pybase*)tuple,
-					new python::pyint((int) siterator.read<uint16_t>())));
-			break;
-		case python::DBTYPE_INT32:
-			values.insert(std::pair<python::pybase*, python::pybase*>(
-					(python::pybase*)tuple,
-					new python::pyint(siterator.read<uint32_t>())));
-			break;
-		case python::DBTYPE_DOUBLE:
-			values.insert(std::pair<python::pybase*, python::pybase*>(
-					(python::pybase*)tuple,
-					new python::pydouble(siterator.read<double>())));
-			break;
-		case python::DBTYPE_CURRENCY:
-		case python::DBTYPE_INT64:
-		case python::DBTYPE_WINFILETIME:
-			values.insert(std::pair<python::pybase*, python::pybase*>(
-					(python::pybase*)tuple,
-					new python::pylong(siterator.read<uint64_t>())));
-			break;
-		case python::DBTYPE_BOOL:
-			if (boolcount == 0) {
-				boolstore = siterator.read<uint8_t>();
+			case python::DBTYPE_UINT8:
+				values->insert(std::pair<python::pybase*, python::pybase*>(
+						(python::pybase*)tuple,
+						new python::pyint((int) siterator.read<uint8_t>())));
+				break;
+			case python::DBTYPE_INT16:
+				values->insert(std::pair<python::pybase*, python::pybase*>(
+						(python::pybase*)tuple,
+						new python::pyint((int) siterator.read<uint16_t>())));
+				break;
+			case python::DBTYPE_INT32:
+				values->insert(std::pair<python::pybase*, python::pybase*>(
+						(python::pybase*)tuple,
+						new python::pyint(siterator.read<uint32_t>())));
+				break;
+			case python::DBTYPE_DOUBLE:
+				values->insert(std::pair<python::pybase*, python::pybase*>(
+						(python::pybase*)tuple,
+						new python::pydouble(siterator.read<double>())));
+				break;
+			case python::DBTYPE_CURRENCY:
+			case python::DBTYPE_INT64:
+			case python::DBTYPE_WINFILETIME:
+				values->insert(std::pair<python::pybase*, python::pybase*>(
+						(python::pybase*)tuple,
+						new python::pylong(siterator.read<uint64_t>())));
+				break;
+			case python::DBTYPE_BOOL:
+				if (boolcount == 0) {
+					boolstore = siterator.read<uint8_t>();
+				}
+				values->insert(std::pair<python::pybase*, python::pybase*>(
+						(python::pybase*)tuple,
+						new python::pybool(
+								(boolstore >> boolcount++) & 0x01 ? true : false)));
+				if (boolcount == 8) {
+					boolcount = 0;
+				}
+				break;
+			case python::DBTYPE_STRING:
+			case python::DBTYPE_WSTRING:
+				values->insert(std::pair<python::pybase*, python::pybase*>(
+						(python::pybase*)tuple,
+						loadPy()));
+				break;
+			default:
+				std::stringstream stream;
+				stream << "Unknow DBType: ";
+				stream << tuple->at(1)->asInt()->value();
+				throw loadErrorException(stream.str());
 			}
-			values.insert(std::pair<python::pybase*, python::pybase*>(
-					(python::pybase*)tuple,
-					new python::pybool(
-							(boolstore >> boolcount++) & 0x01 ? true : false)));
-			if (boolcount == 8) {
-				boolcount = 0;
-			}
-			break;
-		case python::DBTYPE_STRING:
-		case python::DBTYPE_WSTRING:
-			values.insert(std::pair<python::pybase*, python::pybase*>(
-					(python::pybase*)tuple,
-					loadPy()));
-			break;
-		default:
-			std::stringstream stream;
-			stream << "Unknow DBType: ";
-			stream << tuple->at(1)->asInt()->value();
-			throw loadErrorException(stream.str());
 		}
+
+	} catch (std::exception& exception) {
+		cleanValues(values);
+		delete(values);
+		row->decRef();
+		throw exception;
 	}
 
 	tuple = descriptor->getColumns();
@@ -1038,18 +1095,22 @@ python::pydbrow* reader::loadDBRow(const unsigned char* ibuffer,
 
 	for (; tupleIterator != tupleEnd; ++tupleIterator) {
 
-		if (!values.at((*tupleIterator))) {
+		if (!values->at((*tupleIterator))) {
 			std::stringstream stream;
 			stream << "DB Coulumn not found: ";
+			cleanValues(values);
+			delete(values);
 			row->decRef();
 			throw loadErrorException(stream.str());
 		}
 
 		row->push_back_dict((*tupleIterator)->asTuple()->at(0),
-				(python::pybase*)(values.at((*tupleIterator))));
+				(python::pybase*)(values->at((*tupleIterator))));
 	}
 
 	row->header(descriptor);
+
+	delete values;
 
 	return (row);
 }
