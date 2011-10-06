@@ -91,9 +91,9 @@ void csvvisitor::visitDict(const python::pydict* object) {
 			++iterator;
 		}
 		m_first = object;
-	}
 
-	m_stream << std::endl;
+		m_stream << std::endl;
+	}
 
 	iterator = object->begin();
 
@@ -107,6 +107,8 @@ void csvvisitor::visitDict(const python::pydict* object) {
 			m_stream << ";";
 		}
 	}
+
+	m_stream << std::endl;
 }
 
 void csvvisitor::visitObject(const python::pyobject*) {
