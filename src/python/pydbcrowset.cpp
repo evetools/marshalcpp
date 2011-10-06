@@ -18,15 +18,15 @@ namespace evetools {
 namespace python {
 
 pydbcrowset::pydbcrowset() :
-		pyobjectex(PYTYPE_DBROWLIST) {
+		pyobjectex(PYTYPE_DBCROWSET) {
 }
 
 pydbcrowset::pydbcrowset(const bool reduce) :
-		pyobjectex(PYTYPE_DBROWLIST, reduce) {
+		pyobjectex(PYTYPE_DBCROWSET, reduce) {
 }
 
 pydbcrowset::pydbcrowset(const pydbcrowset&) :
-		pyobjectex(PYTYPE_DBROWLIST) {
+		pyobjectex(PYTYPE_DBCROWSET) {
 }
 
 pydbcrowset::~pydbcrowset() {
