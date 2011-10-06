@@ -191,7 +191,7 @@ void dumpvisitor::visitObjectExLike(const python::pyobjectex* object,
 	if (object->isReduce()) {
 		m_stream << " : reduce";
 	}
-	m_stream << " : LIST]" << std::endl;
+	m_stream << " : LIST " << object->list()->size() << "]" << std::endl;
 	push();
 	python::pylist::const_iterator iteratorList = object->list()->begin();
 	python::pylist::const_iterator endList = object->list()->end();
@@ -205,7 +205,7 @@ void dumpvisitor::visitObjectExLike(const python::pyobjectex* object,
 	if (object->isReduce()) {
 		m_stream << " : reduce";
 	}
-	m_stream << " : DICT]" << std::endl;
+	m_stream << " : DICT " << object->dict()->size() << "]" << std::endl;
 	push();
 	python::pydict::const_iterator iteratorDict = object->dict()->begin();
 	python::pydict::const_iterator endDict = object->dict()->end();
