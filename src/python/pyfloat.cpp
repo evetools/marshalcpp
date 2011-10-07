@@ -1,5 +1,5 @@
 //==========================================================================
-// Name        : pylong.cpp
+// Name        : pyfloat.cpp
 // Version     : 0.0.1
 //==========================================================================
 
@@ -17,34 +17,34 @@ namespace evetools {
 
 namespace python {
 
-pylong::pylong() :
-		pybase(PYTYPE_LONG), m_value(0) {
+pyfloat::pyfloat() :
+		pybase(PYTYPE_FLOAT), m_value(0.0f) {
 
 }
 
-pylong::pylong(const pylong&) :
-		pybase(PYTYPE_LONG), m_value(0) {
+pyfloat::pyfloat(const pyfloat&) :
+		pybase(PYTYPE_FLOAT), m_value(0.0f) {
 
 }
 
-pylong::pylong(const int64_t longValue) :
-		pybase(PYTYPE_LONG), m_value(longValue) {
+pyfloat::pyfloat(const float doubleValue) :
+		pybase(PYTYPE_FLOAT), m_value(doubleValue) {
+}
+
+pyfloat::~pyfloat() {
 
 }
 
-pylong::~pylong() {
-
-}
-
-int64_t pylong::value() const {
+float pyfloat::value() const {
 	return (m_value);
 }
 
-void pylong::visit(pyvisitor& visitor) const {
-	visitor.visitLong(this);
+
+void pyfloat::visit(pyvisitor& visitor) const {
+	visitor.visitFloat(this);
 }
 
-} /* namespace evetools */
-
 } /* namespace python */
+
+} /* namespace evetools */
 

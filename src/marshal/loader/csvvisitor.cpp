@@ -49,9 +49,22 @@ void csvvisitor::visitInt(const python::pyint* object) {
 	m_stream << object->value();
 }
 
+void csvvisitor::visitUInt(const python::pyuint* object) {
+	m_stream << object->value();
+}
+
 void csvvisitor::visitLong(const python::pylong* object) {
 	m_stream << object->value();
 }
+
+void csvvisitor::visitULong(const python::pyulong* object) {
+	m_stream << object->value();
+}
+
+void csvvisitor::visitFloat(const python::pyfloat* object) {
+	m_stream << object->value();
+}
+
 
 void csvvisitor::visitDouble(const python::pydouble* object) {
 	m_stream << object->value();

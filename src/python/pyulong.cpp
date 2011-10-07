@@ -1,5 +1,5 @@
 //==========================================================================
-// Name        : pylong.cpp
+// Name        : pyulong.cpp
 // Version     : 0.0.1
 //==========================================================================
 
@@ -17,31 +17,31 @@ namespace evetools {
 
 namespace python {
 
-pylong::pylong() :
-		pybase(PYTYPE_LONG), m_value(0) {
+pyulong::pyulong() :
+		pybase(PYTYPE_ULONG), m_value(0) {
 
 }
 
-pylong::pylong(const pylong&) :
-		pybase(PYTYPE_LONG), m_value(0) {
+pyulong::pyulong(const pyulong&) :
+		pybase(PYTYPE_ULONG), m_value(0) {
 
 }
 
-pylong::pylong(const int64_t longValue) :
-		pybase(PYTYPE_LONG), m_value(longValue) {
+pyulong::pyulong(const uint64_t longValue) :
+		pybase(PYTYPE_ULONG), m_value(longValue) {
 
 }
 
-pylong::~pylong() {
+pyulong::~pyulong() {
 
 }
 
-int64_t pylong::value() const {
+uint64_t pyulong::value() const {
 	return (m_value);
 }
 
-void pylong::visit(pyvisitor& visitor) const {
-	visitor.visitLong(this);
+void pyulong::visit(pyvisitor& visitor) const {
+	visitor.visitULong(this);
 }
 
 } /* namespace evetools */

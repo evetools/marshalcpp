@@ -24,10 +24,10 @@ class pylong: public pybase {
 
 public:
 
-	pylong(const uint64_t value);
+	pylong(const int64_t value);
 	virtual ~pylong();
 
-	uint64_t value() const;
+	int64_t value() const;
 
 	void visit(pyvisitor& visitor) const;
 
@@ -36,7 +36,7 @@ private:
 	pylong();
 	pylong(const pylong&);
 
-	uint64_t m_value;
+	int64_t m_value;
 };
 
 } /* namespace python */

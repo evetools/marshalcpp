@@ -24,10 +24,10 @@ class pyint: public pybase {
 
 public:
 
-	pyint(const uint32_t value);
+	pyint(const int32_t value);
 	virtual ~pyint();
 
-	uint32_t value() const;
+	int32_t value() const;
 
 	void visit(pyvisitor& visitor) const;
 
@@ -36,7 +36,7 @@ private:
 	pyint();
 	pyint(const pyint&);
 
-	uint32_t m_value;
+	int32_t m_value;
 };
 
 } /* namespace python */

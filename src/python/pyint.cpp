@@ -25,7 +25,7 @@ pyint::pyint(const pyint&) :
 		pybase(PYTYPE_INT), m_value(0) {
 }
 
-pyint::pyint(const uint32_t intValue) :
+pyint::pyint(const int32_t intValue) :
 		pybase(PYTYPE_INT), m_value(intValue) {
 
 }
@@ -33,7 +33,7 @@ pyint::pyint(const uint32_t intValue) :
 pyint::~pyint() {
 }
 
-uint32_t pyint::value() const {
+int32_t pyint::value() const {
 	return (m_value);
 }
 

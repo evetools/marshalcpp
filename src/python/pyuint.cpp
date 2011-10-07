@@ -1,5 +1,5 @@
 //==========================================================================
-// Name        : pylong.cpp
+// Name        : pyuint.cpp
 // Version     : 0.0.1
 //==========================================================================
 
@@ -17,31 +17,28 @@ namespace evetools {
 
 namespace python {
 
-pylong::pylong() :
-		pybase(PYTYPE_LONG), m_value(0) {
+pyuint::pyuint() :
+		pybase(PYTYPE_UINT), m_value(0) {
+}
+
+pyuint::pyuint(const pyuint&) :
+		pybase(PYTYPE_UINT), m_value(0) {
+}
+
+pyuint::pyuint(const uint32_t intValue) :
+		pybase(PYTYPE_UINT), m_value(intValue) {
 
 }
 
-pylong::pylong(const pylong&) :
-		pybase(PYTYPE_LONG), m_value(0) {
-
+pyuint::~pyuint() {
 }
 
-pylong::pylong(const int64_t longValue) :
-		pybase(PYTYPE_LONG), m_value(longValue) {
-
-}
-
-pylong::~pylong() {
-
-}
-
-int64_t pylong::value() const {
+uint32_t pyuint::value() const {
 	return (m_value);
 }
 
-void pylong::visit(pyvisitor& visitor) const {
-	visitor.visitLong(this);
+void pyuint::visit(pyvisitor& visitor) const {
+	visitor.visitUInt(this);
 }
 
 } /* namespace evetools */

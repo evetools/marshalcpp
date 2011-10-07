@@ -36,7 +36,10 @@ typedef enum pytypes {
 	PYTYPE_NONE,
 	PYTYPE_BOOL,
 	PYTYPE_INT,
+	PYTYPE_UINT,
 	PYTYPE_LONG,
+	PYTYPE_ULONG,
+	PYTYPE_FLOAT,
 	PYTYPE_DOUBLE,
 	PYTYPE_BUFFER,
 	PYTYPE_GLOBAL,
@@ -60,7 +63,7 @@ typedef enum dbtypes {
 	DBTYPE_INT8 = 16,
 	DBTYPE_UINT8 = 17,
 	DBTYPE_INT16 = 2,
-	DBTYPE_UNT16 = 18,
+	DBTYPE_UINT16 = 18,
 	DBTYPE_INT32 = 3,
 	DBTYPE_UINT32 = 19,
 	DBTYPE_INT64 = 20,
@@ -117,7 +120,10 @@ public:
 	bool isNone() const;
 	bool isBool() const;
 	bool isInt() const;
+	bool isUInt() const;
 	bool isLong() const;
+	bool isULong() const;
+	bool isFloat() const;
 	bool isDouble() const;
 	bool isBuffer() const;
 	bool isGlobal() const;
@@ -140,8 +146,17 @@ public:
 	pyint* asInt();
 	const pyint* asInt() const;
 
+	pyuint* asUInt();
+	const pyuint* asUInt() const;
+
 	pylong* asLong();
 	const pylong* asLong() const;
+
+	pyulong* asULong();
+	const pyulong* asULong() const;
+
+	pyfloat* asFloat();
+	const pyfloat* asFloat() const;
 
 	pydouble* asDouble();
 	const pydouble* asDouble() const;

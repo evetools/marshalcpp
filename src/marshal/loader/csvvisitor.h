@@ -34,7 +34,10 @@ public:
 	void visitNone(const python::pynone* pynone);
 	void visitBool(const python::pybool* pybool);
 	void visitInt(const python::pyint* pyint);
+	void visitUInt(const python::pyuint* pyuint);
 	void visitLong(const python::pylong* pylong);
+	void visitULong(const python::pyulong* pyulong);
+	void visitFloat(const python::pyfloat* pyfloat);
 	void visitDouble(const python::pydouble* pydouble);
 	void visitBuffer(const python::pybuffer* pybuffer);
 	void visitGlobal(const python::pyglobal* pyglobal);

@@ -115,16 +115,23 @@ void pydbrowdescriptor::init() {
 
 	for (; iterator != end; ++iterator) {
 		switch ((*iterator)->asTuple()->at(1)->asInt()->value()) {
+		case DBTYPE_INT8:
 		case DBTYPE_UINT8:
 			m_size += sizeof(int8_t);
 			m_sortedColumns.insert(std::make_pair(8, index++));
 			break;
 		case DBTYPE_INT16:
+		case DBTYPE_UINT16:
 			m_size += sizeof(int16_t);
 			m_sortedColumns.insert(std::make_pair(16, index++));
 			break;
 		case DBTYPE_INT32:
+		case DBTYPE_UINT32:
 			m_size += sizeof(int32_t);
+			m_sortedColumns.insert(std::make_pair(32, index++));
+			break;
+		case DBTYPE_FLOAT:
+			m_size += sizeof(float);
 			m_sortedColumns.insert(std::make_pair(32, index++));
 			break;
 		case DBTYPE_DOUBLE:
@@ -133,6 +140,7 @@ void pydbrowdescriptor::init() {
 			break;
 		case DBTYPE_CURRENCY:
 		case DBTYPE_INT64:
+		case DBTYPE_UINT64:
 		case DBTYPE_WINFILETIME:
 			m_size += sizeof(int64_t);
 			m_sortedColumns.insert(std::make_pair(64, index++));
@@ -149,6 +157,7 @@ void pydbrowdescriptor::init() {
 			break;
 		case DBTYPE_STRING:
 		case DBTYPE_WSTRING:
+		case DBTYPE_EMPTY: // never encountered so i hope this is right
 			m_sortedColumns.insert(std::make_pair(0, index++));
 			break;
 		default:

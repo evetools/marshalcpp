@@ -67,8 +67,16 @@ bool pybase::isInt() const {
 	return (m_type == PYTYPE_INT);
 }
 
+bool pybase::isUInt() const {
+	return (m_type == PYTYPE_UINT);
+}
+
 bool pybase::isLong() const {
 	return (m_type == PYTYPE_LONG);
+}
+
+bool pybase::isULong() const {
+	return (m_type == PYTYPE_ULONG);
 }
 
 bool pybase::isDouble() const {
@@ -149,6 +157,16 @@ const pyint* pybase::asInt() const {
 	return (reinterpret_cast<const pyint*>(this));
 }
 
+pyuint* pybase::asUInt() {
+	assert(isUInt());
+	return (reinterpret_cast<pyuint*>(this));
+}
+
+const pyuint* pybase::asUInt() const {
+	assert(isUInt());
+	return (reinterpret_cast<const pyuint*>(this));
+}
+
 pylong* pybase::asLong() {
 	assert(isLong());
 	return (reinterpret_cast<pylong*>(this));
@@ -157,6 +175,16 @@ pylong* pybase::asLong() {
 const pylong* pybase::asLong() const {
 	assert(isLong());
 	return (reinterpret_cast<const pylong*>(this));
+}
+
+pyulong* pybase::asULong() {
+	assert(isULong());
+	return (reinterpret_cast<pyulong*>(this));
+}
+
+const pyulong* pybase::asULong() const {
+	assert(isULong());
+	return (reinterpret_cast<const pyulong*>(this));
 }
 
 pydouble* pybase::asDouble() {

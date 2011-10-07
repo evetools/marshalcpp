@@ -56,8 +56,20 @@ void dumpvisitor::visitInt(const python::pyint* object) {
 	m_stream << indent() << "[INT : " << object->value() << "]" << std::endl;
 }
 
+void dumpvisitor::visitUInt(const python::pyuint* object) {
+	m_stream << indent() << "[UINT : " << object->value() << "]" << std::endl;
+}
+
 void dumpvisitor::visitLong(const python::pylong* object) {
 	m_stream << indent() << "[LONG : " << object->value() << "]" << std::endl;
+}
+
+void dumpvisitor::visitULong(const python::pyulong* object) {
+	m_stream << indent() << "[ULONG : " << object->value() << "]" << std::endl;
+}
+
+void dumpvisitor::visitFloat(const python::pyfloat* object) {
+	m_stream << indent() << "[FLOAT : " << object->value() << "]" << std::endl;
 }
 
 void dumpvisitor::visitDouble(const python::pydouble* object) {

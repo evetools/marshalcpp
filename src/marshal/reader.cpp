@@ -1036,20 +1036,40 @@ python::pydbrow* reader::loadDBRow(const unsigned char* ibuffer,
 
 			switch (tuple->at(1)->asInt()->value()) {
 
+			case python::DBTYPE_INT8:
+				values->insert(std::pair<python::pybase*, python::pybase*>(
+						(python::pybase*)tuple,
+						new python::pyint((int) siterator.read<int8_t>())));
+				break;
 			case python::DBTYPE_UINT8:
 				values->insert(std::pair<python::pybase*, python::pybase*>(
 						(python::pybase*)tuple,
-						new python::pyint((int) siterator.read<uint8_t>())));
+						new python::pyuint((unsigned int) siterator.read<uint8_t>())));
 				break;
 			case python::DBTYPE_INT16:
 				values->insert(std::pair<python::pybase*, python::pybase*>(
 						(python::pybase*)tuple,
-						new python::pyint((int) siterator.read<uint16_t>())));
+						new python::pyint((int) siterator.read<int16_t>())));
+				break;
+			case python::DBTYPE_UINT16:
+				values->insert(std::pair<python::pybase*, python::pybase*>(
+						(python::pybase*)tuple,
+						new python::pyuint((unsigned int) siterator.read<uint16_t>())));
 				break;
 			case python::DBTYPE_INT32:
 				values->insert(std::pair<python::pybase*, python::pybase*>(
 						(python::pybase*)tuple,
-						new python::pyint(siterator.read<uint32_t>())));
+						new python::pyint(siterator.read<int32_t>())));
+				break;
+			case python::DBTYPE_UINT32:
+				values->insert(std::pair<python::pybase*, python::pybase*>(
+						(python::pybase*)tuple,
+						new python::pyuint(siterator.read<uint32_t>())));
+				break;
+			case python::DBTYPE_FLOAT:
+				values->insert(std::pair<python::pybase*, python::pybase*>(
+						(python::pybase*)tuple,
+						new python::pyfloat(siterator.read<float>())));
 				break;
 			case python::DBTYPE_DOUBLE:
 				values->insert(std::pair<python::pybase*, python::pybase*>(
@@ -1061,7 +1081,12 @@ python::pydbrow* reader::loadDBRow(const unsigned char* ibuffer,
 			case python::DBTYPE_WINFILETIME:
 				values->insert(std::pair<python::pybase*, python::pybase*>(
 						(python::pybase*)tuple,
-						new python::pylong(siterator.read<uint64_t>())));
+						new python::pylong(siterator.read<int64_t>())));
+				break;
+			case python::DBTYPE_UINT64:
+				values->insert(std::pair<python::pybase*, python::pybase*>(
+						(python::pybase*)tuple,
+						new python::pyulong(siterator.read<uint64_t>())));
 				break;
 			case python::DBTYPE_BOOL:
 				if (boolcount == 0) {
