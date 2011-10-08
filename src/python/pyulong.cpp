@@ -36,6 +36,21 @@ pyulong::~pyulong() {
 
 }
 
+int pyulong::compare(const pybase& rval) const {
+
+	int ret = pybase::compare(rval);
+
+	if (ret == 0){
+		if (m_value == rval.asULong()->value()) {
+			return 0;
+		} else if (m_value < rval.asULong()->value()) {
+			return -1;
+		}
+		return 1;
+	}
+
+	return (ret);
+}
 uint64_t pyulong::value() const {
 	return (m_value);
 }

@@ -27,6 +27,8 @@ public:
 	pyint(const int32_t value);
 	virtual ~pyint();
 
+	int compare(const pybase& rval) const;
+
 	int32_t value() const;
 
 	void visit(pyvisitor& visitor) const;

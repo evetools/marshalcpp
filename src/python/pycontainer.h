@@ -30,6 +30,8 @@ public:
 
 	virtual ~pycontainer();
 
+	int compareValues(const pycontainer& rval) const;
+
 	virtual void push_back(pybase* pybase);
 
 	iterator begin();
@@ -41,7 +43,6 @@ public:
 	size_t size() const;
 
 	pybase* at(size_t pos) const;
-
 
 protected:
 

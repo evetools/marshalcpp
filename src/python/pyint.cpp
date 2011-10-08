@@ -33,6 +33,21 @@ pyint::pyint(const int32_t intValue) :
 pyint::~pyint() {
 }
 
+int pyint::compare(const pybase& rval) const {
+
+	int ret = pybase::compare(rval);
+
+	if (ret == 0){
+		if (m_value == rval.asInt()->value()) {
+			return 0;
+		} else if (m_value < rval.asInt()->value()) {
+			return -1;
+		}
+		return 1;
+	}
+
+	return (ret);
+}
 int32_t pyint::value() const {
 	return (m_value);
 }

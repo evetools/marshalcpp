@@ -27,6 +27,8 @@ public:
 	pynone();
 	virtual ~pynone();
 
+	int compare(const pybase& rval) const;
+
 	void visit(pyvisitor& visitor) const;
 
 private:

@@ -39,6 +39,36 @@ pycontainer::~pycontainer() {
 	}
 }
 
+int pycontainer::compareValues(const pycontainer& rval) const {
+
+		if (m_container.size() == rval.size()) {
+
+			pycontainer::const_iterator itrBegin = begin();
+			pycontainer::const_iterator itrEnd = end();
+
+			pycontainer::const_iterator rvalItrBegin = rval.begin();
+			pycontainer::const_iterator rvalItrEnd = rval.end();
+
+			int ret = 0;
+
+			for  ( ;((itrBegin != itrEnd) && (rvalItrBegin != rvalItrEnd));
+					(++itrBegin, ++rvalItrBegin)) {
+
+				ret = (*itrBegin)->compare(*(*rvalItrBegin));
+
+				if (ret != 0) {
+					return ret;
+				}
+			}
+		} else if (m_container.size() < rval.size()) {
+			return -1;
+		}
+
+		return 1;
+
+	return (0);
+}
+
 size_t pycontainer::size() const {
 	return (m_container.size());
 }

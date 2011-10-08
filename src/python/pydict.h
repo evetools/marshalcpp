@@ -20,21 +20,36 @@ namespace evetools {
 
 namespace python {
 
-class pydict: public pycontainer {
+class pydict: public pybase {
 
 public:
+
+	typedef std::map<pybase*, pybase*> storage_type;
+	typedef storage_type::iterator iterator;
+	typedef storage_type::const_iterator const_iterator;
 
 	pydict();
 	virtual ~pydict();
 
-	void push_back(pybase* pybase);
 	void push_back(pybase* pybaseKey, pybase* pybaseValue);
+
+	iterator begin();
+	iterator end();
+
+	const_iterator begin() const;
+	const_iterator end() const;
+
+	size_t size() const;
+
+	const pybase* at(const pybase& key) const;
+	const pybase* at(const std::string&) const;
 
 	void visit(pyvisitor& visitor) const;
 
 private:
-
 	pydict(const pydict&);
+
+	std::map<pybase*, pybase*> m_map;
 };
 
 } /* namespace python */

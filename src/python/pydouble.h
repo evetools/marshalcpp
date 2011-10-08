@@ -27,6 +27,8 @@ public:
 	pydouble(const double value);
 	virtual ~pydouble();
 
+	int compare(const pybase& rval) const;
+
 	double value() const ;
 
 	void visit(pyvisitor& visitor) const;

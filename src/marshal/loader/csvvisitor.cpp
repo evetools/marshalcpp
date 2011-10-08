@@ -91,17 +91,20 @@ void csvvisitor::visitDict(const python::pydict* object) {
 	python::pydict::const_iterator iterator = object->begin();
 	python::pydict::const_iterator end = object->end();
 
+	size_t size = object->size();
+	size_t pos = 1;
+
 	if (!m_first) {
 
 		for (; iterator != end; ++iterator) {
 
-			(*iterator)->visit(*this);
+			(*iterator).first->visit(*this);
 
-			if ((iterator + 2) != end) {
+			if (pos < size) {
 				m_stream << ";";
 			}
 
-			++iterator;
+			pos++;
 		}
 		m_first = object;
 
@@ -110,15 +113,18 @@ void csvvisitor::visitDict(const python::pydict* object) {
 
 	iterator = object->begin();
 
+	pos = 1;
+
 	for (; iterator != end; ++iterator) {
 
-		++iterator;
+		(*iterator).second->visit(*this);
 
-		(*iterator)->visit(*this);
-
-		if ((iterator + 1) != end) {
+		if (pos < size) {
 			m_stream << ";";
 		}
+
+		pos++;
+
 	}
 
 	m_stream << std::endl;

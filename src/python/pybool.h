@@ -27,6 +27,8 @@ public:
 	pybool(const bool value);
 	virtual ~pybool();
 
+	int compare(const pybase& rval) const;
+
 	bool value() const;
 
 	void visit(pyvisitor& visitor) const;

@@ -33,6 +33,22 @@ pybool::~pybool() {
 
 }
 
+int pybool::compare(const pybase& rval) const {
+
+	int ret = pybase::compare(rval);
+
+	if (ret == 0){
+		if (m_value == rval.asBool()->value()) {
+			return 0;
+		} else if (m_value < rval.asBool()->value()) {
+			return -1;
+		}
+		return 1;
+	}
+
+	return (ret);
+}
+
 bool pybool::value() const {
 	return (m_value);
 }

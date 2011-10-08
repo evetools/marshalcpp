@@ -37,6 +37,25 @@ pyobject::~pyobject() {
 	}
 }
 
+int pyobject::compare(const pybase& rval) const {
+
+	int ret = pybase::compare(rval);
+
+	if (ret == 0){
+
+		if (m_header) {
+			ret = m_header->compare(*(rval.asObject()->header()));
+		}
+
+		if (ret == 0) {
+			if (m_content) {
+				ret = m_content->compare(*(rval.asObject()->header()));
+			}
+		}
+	}
+
+	return (ret);
+}
 const pybase* pyobject::header() const {
 	return (m_header);
 }

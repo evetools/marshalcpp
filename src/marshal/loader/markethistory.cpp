@@ -118,21 +118,13 @@ void markethistory::load(const python::pybase& py) {
 
 	const python::pydict* dict = py.asTuple()->at(1)->asDict();
 	const python::pydbcrowset* object = NULL;
+	const python::pybase* dummy = dict->at("lret");
 
-	python::pydict::const_iterator iterator = dict->begin();
-	python::pydict::const_iterator end = dict->end();
-
-	for (; iterator != end; ++iterator) {
-
-		if ((*iterator)->isBuffer()) {
-			if ((*iterator)->asBuffer()->str().compare("lret") == 0) {
-				object = (*(++iterator))->asDBCRowSet();
-				break;
-			}
-		}
-
-		++iterator;
+	if (!dummy) {
+		throw loadErrorException("Parsing MarketHistory Object");
 	}
+
+	object = dummy->asDBCRowSet();
 
 	if (!object) {
 		throw loadErrorException("Parsing MarketHistory Object");

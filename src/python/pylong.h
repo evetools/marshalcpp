@@ -27,6 +27,8 @@ public:
 	pylong(const int64_t value);
 	virtual ~pylong();
 
+	int compare(const pybase& rval) const;
+
 	int64_t value() const;
 
 	void visit(pyvisitor& visitor) const;

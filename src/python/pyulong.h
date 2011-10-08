@@ -27,6 +27,8 @@ public:
 	pyulong(const uint64_t value);
 	virtual ~pyulong();
 
+	int compare(const pybase& rval) const;
+
 	uint64_t value() const;
 
 	void visit(pyvisitor& visitor) const;

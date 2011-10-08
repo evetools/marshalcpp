@@ -33,6 +33,21 @@ pyuint::pyuint(const uint32_t intValue) :
 pyuint::~pyuint() {
 }
 
+int pyuint::compare(const pybase& rval) const {
+
+	int ret = pybase::compare(rval);
+
+	if (ret == 0){
+		if (m_value == rval.asUInt()->value()) {
+			return 0;
+		} else if (m_value < rval.asUInt()->value()) {
+			return -1;
+		}
+		return 1;
+	}
+
+	return (ret);
+}
 uint32_t pyuint::value() const {
 	return (m_value);
 }

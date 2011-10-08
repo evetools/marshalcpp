@@ -112,35 +112,28 @@ void regionbest::load(const python::pybase& py) {
 
 	const python::pydict* dict = py.asTuple()->at(1)->asDict();
 	const python::pyobjectex* objectex = NULL;
+	const python::pybase* dummy = dict->at("lret");
 
-	python::pydict::const_iterator iterator = dict->begin();
-	python::pydict::const_iterator end = dict->end();
-
-	for (; iterator != end; ++iterator) {
-
-		if ((*iterator)->isBuffer()) {
-			if ((*iterator)->asBuffer()->str().compare("lret") == 0) {
-				objectex = (*(++iterator))->asObjectEx();
-				break;
-			}
-		}
-
-		++iterator;
+	if (!dummy) {
+		throw loadErrorException("Parsing MarketBest Object");
 	}
+
+	objectex = dummy->asObjectEx();
 
 	if (!objectex) {
 		throw loadErrorException("Parsing MarketBest Object");
 	}
 
-	python::pydict::const_iterator iteratorList = objectex->dict()->begin();
-	python::pydict::const_iterator endList = objectex->dict()->end();
+	python::pydict::const_iterator iterator = objectex->dict()->begin();
+	python::pydict::const_iterator end = objectex->dict()->end();
 
 	m_visitor = new csvvisitor();
 
-	for (; iteratorList != endList; ++iteratorList) {
-		if ((*iteratorList)->isDBRow()) {
-			(*iteratorList)->asDBRow()->dict()->visit(*m_visitor);
+	for (; iterator != end; ++iterator) {
+		if ((*iterator).first->isDBRow()) {
+			(*iterator).first->asDBRow()->dict()->visit(*m_visitor);
 		}
+
 	}
 }
 

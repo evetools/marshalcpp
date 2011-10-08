@@ -45,6 +45,28 @@ pyobjectex::~pyobjectex() {
 	}
 }
 
+int pyobjectex::compare(const pybase& rval) const {
+
+	int ret = pybase::compare(rval);
+
+	if (ret == 0){
+
+		if (m_header) {
+			ret = m_header->compare(*((const pyobjectex*)&rval)->header());
+		}
+
+		if (ret == 0) {
+			ret = m_dict.compare(*((const pyobjectex*)&rval)->dict());
+		}
+
+		if (ret == 0) {
+			ret = m_list.compare(*((const pyobjectex*)&rval)->list());
+		}
+	}
+
+	return (ret);
+}
+
 bool pyobjectex::isReduce() const {
 	return (m_reduce);
 }
@@ -76,10 +98,6 @@ void pyobjectex::header(pybase* pyHeader) {
 
 void pyobjectex::push_back_list(pybase* pyBase) {
 	m_list.push_back(pyBase);
-}
-
-void pyobjectex::push_back_dict(pybase* pyBase) {
-	m_dict.push_back(pyBase);
 }
 
 void pyobjectex::push_back_dict(pybase* pybaseKey, pybase* pybaseValue) {

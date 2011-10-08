@@ -27,6 +27,8 @@ public:
 	pyobject();
 	virtual ~pyobject();
 
+	int compare(const pybase& rval) const;
+
 	const pybase* header() const;
 
 	const pybase* content() const;

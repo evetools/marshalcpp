@@ -35,6 +35,21 @@ pydouble::~pydouble() {
 
 }
 
+int pydouble::compare(const pybase& rval) const {
+
+	int ret = pybase::compare(rval);
+
+	if (ret == 0){
+		if (m_value == rval.asDouble()->value()) {
+			return 0;
+		} else if (m_value < rval.asDouble()->value()) {
+			return -1;
+		}
+		return 1;
+	}
+
+	return (ret);
+}
 double pydouble::value() const {
 	return (m_value);
 }

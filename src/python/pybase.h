@@ -22,6 +22,7 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <unordered_map>
 #include <sstream>
 
 #include <zlib.h>
@@ -137,6 +138,9 @@ public:
 	bool isDBRowDescriptor() const;
 	bool isDBRow() const;
 
+	pybase* asBase();
+	const pybase* asBase() const;
+
 	pynone* asNone();
 	const pynone* asNone() const;
 
@@ -199,6 +203,17 @@ public:
 	void incRef();
 
 	void decRef();
+
+	virtual bool operator==(const pybase& rval) const;
+	virtual bool operator!=(const pybase& rval) const;
+
+	virtual bool operator<(const pybase& rval) const;
+	virtual bool operator<=(const pybase& rval) const;
+
+	virtual bool operator>(const pybase& rval) const;
+	virtual bool operator>=(const pybase& rval) const;
+
+	virtual int compare(const pybase& rval) const;
 
 protected:
 

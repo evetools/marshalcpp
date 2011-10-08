@@ -18,14 +18,23 @@ namespace evetools {
 namespace python {
 
 pydict::pydict() :
-		pycontainer(PYTYPE_DICT) {
+		pybase(PYTYPE_DICT) {
 }
 
 pydict::pydict(const pydict&) :
-		pycontainer(PYTYPE_DICT) {
+		pybase(PYTYPE_DICT) {
 }
 
 pydict::~pydict() {
+
+	pydict::const_iterator iteratorCurrent = begin();
+	pydict::const_iterator iteratorEnd = end();
+
+	for (; iteratorCurrent != iteratorEnd; ++iteratorCurrent) {
+		(*iteratorCurrent).first->decRef();
+		(*iteratorCurrent).second->decRef();
+	}
+
 }
 
 void pydict::push_back(pybase* pybaseKey, pybase* pybaseValue) {
@@ -39,17 +48,48 @@ void pydict::push_back(pybase* pybaseKey, pybase* pybaseValue) {
 		stream << "Invalid NULL value argument passed to pydict::push_back.";
 		throw pyNullException(stream.str());
 	}
-	pycontainer::push_back(pybaseKey);
-	pycontainer::push_back(pybaseValue);
+	pybaseKey->incRef();
+	pybaseValue->incRef();
+	m_map.insert(std::pair<pybase*, pybase*>(pybaseKey, pybaseValue));
 }
 
-void pydict::push_back(pybase* object) {
-	if (!object) {
-		std::stringstream stream;
-		stream << "Invalid NULL argument passed to pydict::push_back.";
-		throw pyNullException(stream.str());
+size_t pydict::size() const {
+	return (m_map.size());
+}
+
+const pybase* pydict::at(const std::string& key) const {
+	return (at(pybuffer(key.c_str(), key.length())));
+}
+
+const pybase* pydict::at(const pybase& key) const {
+
+	pydict::const_iterator iteratorCurrent = begin();
+	pydict::const_iterator iteratorEnd = end();
+
+	for (; iteratorCurrent != iteratorEnd; ++iteratorCurrent) {
+
+		if ((*iteratorCurrent).first->compare(key) == 0) {
+			return (*iteratorCurrent).second;
+		}
 	}
-	pycontainer::push_back(object);
+
+	return (NULL);
+}
+
+pydict::iterator pydict::begin() {
+	return (m_map.begin());
+}
+
+pydict::iterator pydict::end() {
+	return (m_map.end());
+}
+
+pydict::const_iterator pydict::begin() const {
+	return (m_map.begin());
+}
+
+pydict::const_iterator pydict::end() const {
+	return (m_map.end());
 }
 
 void pydict::visit(pyvisitor& visitor) const {

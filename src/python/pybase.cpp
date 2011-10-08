@@ -21,8 +21,8 @@ pybase::pybase() :
 		m_type(PYTYPE_UNKNOWN), m_refCounter(0) {
 }
 
-pybase::pybase(const pybase&) :
-		m_type(PYTYPE_UNKNOWN), m_refCounter(0) {
+pybase::pybase(const pybase& pyBase) :
+		m_type(pyBase.type()), m_refCounter(0) {
 }
 
 pybase::pybase(const pytypes& pyType) :
@@ -79,6 +79,10 @@ bool pybase::isULong() const {
 	return (m_type == PYTYPE_ULONG);
 }
 
+bool pybase::isFloat() const {
+	return (m_type == PYTYPE_FLOAT);
+}
+
 bool pybase::isDouble() const {
 	return (m_type == PYTYPE_DOUBLE);
 }
@@ -125,6 +129,14 @@ bool pybase::isDBRowDescriptor() const {
 
 bool pybase::isDBRow() const {
 	return (m_type == PYTYPE_DBROW);
+}
+
+pybase* pybase::asBase() {
+	return (reinterpret_cast<pybase*>(this));
+}
+
+const pybase* pybase::asBase() const {
+	return (reinterpret_cast<const pybase*>(this));
 }
 
 pynone* pybase::asNone() {
@@ -187,6 +199,16 @@ const pyulong* pybase::asULong() const {
 	return (reinterpret_cast<const pyulong*>(this));
 }
 
+pyfloat* pybase::asFloat() {
+	assert(isFloat());
+	return (reinterpret_cast<pyfloat*>(this));
+}
+
+const pyfloat* pybase::asFloat() const {
+	assert(isFloat());
+	return (reinterpret_cast<const pyfloat*>(this));
+}
+
 pydouble* pybase::asDouble() {
 	assert(isDouble());
 	return (reinterpret_cast<pydouble*>(this));
@@ -196,6 +218,7 @@ const pydouble* pybase::asDouble() const {
 	assert(isDouble());
 	return (reinterpret_cast<const pydouble*>(this));
 }
+
 pybuffer* pybase::asBuffer() {
 	assert(isBuffer());
 	return (reinterpret_cast<pybuffer*>(this));
@@ -304,6 +327,41 @@ pydbrow* pybase::asDBRow() {
 const pydbrow* pybase::asDBRow() const {
 	assert(isDBRow());
 	return (reinterpret_cast<const pydbrow*>(this));
+}
+
+bool pybase::operator==(const pybase& rval) const {
+	return (m_type == rval.type());
+}
+
+bool pybase::operator!=(const pybase& rval) const {
+	return !(*this == rval);
+}
+
+bool pybase::operator<(const pybase& rval) const {
+	return (m_type < rval.type());
+}
+
+bool pybase::operator<=(const pybase& rval) const {
+	return ((*this < rval) || (*this == rval));
+}
+
+bool pybase::operator>(const pybase& rval) const {
+	return (!(*this < rval.type()) && (*this != rval));
+}
+
+bool pybase::operator>=(const pybase& rval) const {
+	return ((*this > rval) || (*this == rval));
+}
+
+int pybase::compare(const pybase& rval) const {
+
+	if (*this == rval) {
+		return 0;
+	} else if (*this < rval) {
+		return -1;
+	}
+
+	return 1;
 }
 
 } /* namespace python */

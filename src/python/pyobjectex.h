@@ -33,8 +33,9 @@ public:
 	pyobjectex(const bool isReduce);
 	virtual ~pyobjectex();
 
+	int compare(const pybase& rval) const;
+
 	void push_back_list(pybase* pybase);
-	void push_back_dict(pybase* pybase);
 	void push_back_dict(pybase* pybaseKey, pybase* pybaseValue);
 
 	bool isReduce() const;

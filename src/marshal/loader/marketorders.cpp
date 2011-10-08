@@ -118,21 +118,13 @@ void marketorders::load(const python::pybase& py) {
 
 	const python::pydict* dict = py.asTuple()->at(1)->asDict();
 	const python::pylist* list = NULL;
+	const python::pybase* dummy = dict->at("lret");
 
-	python::pydict::const_iterator iterator = dict->begin();
-	python::pydict::const_iterator end = dict->end();
-
-	for (; iterator != end; ++iterator) {
-
-		if ((*iterator)->isBuffer()) {
-			if ((*iterator)->asBuffer()->str().compare("lret") == 0) {
-				list = (*(++iterator))->asList();
-				break;
-			}
-		}
-
-		++iterator;
+	if (!dummy) {
+		throw loadErrorException("Parsing MarketOrders Object");
 	}
+
+	list = dummy->asList();
 
 	if (!list) {
 		throw loadErrorException("Parsing MarketOrders Object");

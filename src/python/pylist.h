@@ -28,6 +28,8 @@ public:
 	pylist();
 	virtual ~pylist();
 
+	int compare(const pybase& rval) const;
+
 	void push_back(pybase* pybase);
 
 	void visit(pyvisitor& visitor) const;

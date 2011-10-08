@@ -35,6 +35,21 @@ pyfloat::~pyfloat() {
 
 }
 
+int pyfloat::compare(const pybase& rval) const {
+
+	int ret = pybase::compare(rval);
+
+	if (ret == 0){
+		if (m_value == rval.asFloat()->value()) {
+			return 0;
+		} else if (m_value < rval.asFloat()->value()) {
+			return -1;
+		}
+		return 1;
+	}
+
+	return (ret);
+}
 float pyfloat::value() const {
 	return (m_value);
 }

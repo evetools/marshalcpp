@@ -27,6 +27,8 @@ public:
 	pyfloat(const float value);
 	virtual ~pyfloat();
 
+	int compare(const pybase& rval) const;
+
 	float value() const ;
 
 	void visit(pyvisitor& visitor) const;

@@ -28,6 +28,17 @@ pytuple::pytuple(const pytuple&) :
 pytuple::~pytuple() {
 }
 
+int pytuple::compare(const pybase& rval) const {
+
+	int ret = pybase::compare(rval);
+
+	if (ret == 0){
+		return compareValues((const pycontainer&)(rval));
+	}
+
+	return (ret);
+}
+
 void pytuple::push_back(pybase* object) {
 	if (!object) {
 		std::stringstream stream;

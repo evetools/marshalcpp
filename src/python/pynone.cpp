@@ -29,6 +29,10 @@ pynone::~pynone() {
 
 }
 
+int pynone::compare(const pybase& rval) const {
+	return (pybase::compare(rval));
+}
+
 void pynone::visit(pyvisitor& visitor) const {
 	visitor.visitNone(this);
 }

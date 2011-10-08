@@ -28,6 +28,17 @@ pylist::pylist(const pylist&) :
 pylist::~pylist() {
 }
 
+int pylist::compare(const pybase& rval) const {
+
+	int ret = pybase::compare(rval);
+
+	if (ret == 0){
+		return compareValues((const pycontainer&)(rval));
+	}
+
+	return (ret);
+}
+
 void pylist::push_back(pybase* object) {
 	if (!object) {
 		std::stringstream stream;

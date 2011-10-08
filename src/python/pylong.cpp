@@ -36,6 +36,21 @@ pylong::~pylong() {
 
 }
 
+int pylong::compare(const pybase& rval) const {
+
+	int ret = pybase::compare(rval);
+
+	if (ret == 0){
+		if (m_value == rval.asLong()->value()) {
+			return 0;
+		} else if (m_value < rval.asLong()->value()) {
+			return -1;
+		}
+		return 1;
+	}
+
+	return (ret);
+}
 int64_t pylong::value() const {
 	return (m_value);
 }

@@ -616,7 +616,9 @@ python::pybase* reader::loadDict() {
 			if (value) {
 				stream << "key";
 				// handle case where value is a reference to a stired object
-				container->push_back(value);
+				if (!isStored(value)) {
+					value->decRef();
+				}
 			} else {
 				stream << "value";
 			}
@@ -737,7 +739,9 @@ python::pybase* reader::loadNewClassObject(bool reduce) {
 			if (value) {
 				stream << "key";
 				// handle case where value is a reference to a stired object
-				object->push_back_dict(value);
+				if(!isStored(value)) {
+					value->decRef();
+				}
 			} else {
 				stream << "value";
 			}

@@ -27,6 +27,8 @@ public:
 	pybuffer(const char* buffer, const size_t size);
 	virtual ~pybuffer();
 
+	int compare(const pybase& rval) const;
+
 	const char* value() const;
 	size_t size() const;
 

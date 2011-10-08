@@ -122,11 +122,14 @@ void dumpvisitor::visitDict(const python::pydict* object) {
 
 	push();
 
-	python::pytuple::const_iterator iterator = object->begin();
-	python::pytuple::const_iterator end = object->end();
+	python::pydict::const_iterator iterator = object->begin();
+	python::pydict::const_iterator end = object->end();
 
 	for (; iterator != end; ++iterator) {
-		(*iterator)->visit(*this);
+		(*iterator).first->visit(*this);
+		push();
+		(*iterator).second->visit(*this);
+		pop();
 	}
 
 	pop();
@@ -223,7 +226,10 @@ void dumpvisitor::visitObjectExLike(const python::pyobjectex* object,
 	python::pydict::const_iterator endDict = object->dict()->end();
 
 	for (; iteratorDict != endDict; ++iteratorDict) {
-		(*iteratorDict)->visit(*this);
+		(*iteratorDict).first->visit(*this);
+		push();
+		(*iteratorDict).second->visit(*this);
+		pop();
 	}
 	pop();
 
