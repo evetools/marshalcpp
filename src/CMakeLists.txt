@@ -9,6 +9,8 @@ SET( TARGET_DUMPER_NAME             "dumpmarshal" )
 SET( TARGET_MARKETORDERS_NAME       "marketorders" )
 SET( TARGET_MARKETHISTORY_NAME      "markethistory" )
 SET( TARGET_REGIONBEST_NAME         "regionbest" )
+SET( TARGET_INVTYPES_NAME           "invtypes" )
+SET( TARGET_MAPREGIONS_NAME         "mapregions" )
 SET( TARGET_MEMCHECKMARSHAL_NAME    "memcheckmarshal" )
 
 SET( LIBRARY_NAME                   ${PROJECT_NAME} )
@@ -59,7 +61,26 @@ SET( INCLUDE_LOADER
     "${LIBRARY_INCLUDE_DIR}/marshal/loader/marketorders.h"
     "${LIBRARY_INCLUDE_DIR}/marshal/loader/markethistory.h"
     "${LIBRARY_INCLUDE_DIR}/marshal/loader/regionbest.h"
+    "${LIBRARY_INCLUDE_DIR}/marshal/loader/invtypes.h"
+    "${LIBRARY_INCLUDE_DIR}/marshal/loader/mapregions.h"
     "${LIBRARY_INCLUDE_DIR}/marshal/loader/csvvisitor.h")
+
+SET( INCLUDE_GENERATOR
+    "${LIBRARY_INCLUDE_DIR}/marshal/generator/dbrow.h")
+
+SET( INCLUDE_MODEL
+    "${LIBRARY_INCLUDE_DIR}/model/marketorder.h"
+    "${LIBRARY_INCLUDE_DIR}/model/markethistory.h"
+    "${LIBRARY_INCLUDE_DIR}/model/regionbest.h"
+    "${LIBRARY_INCLUDE_DIR}/model/mapregion.h"
+    "${LIBRARY_INCLUDE_DIR}/model/invtype.h")
+
+SET( INCLUDE_MODEL_LOADER
+    "${LIBRARY_INCLUDE_DIR}/model/loader/marketorders.h"
+    "${LIBRARY_INCLUDE_DIR}/model/loader/markethistory.h"
+    "${LIBRARY_INCLUDE_DIR}/model/loader/regionbest.h"
+    "${LIBRARY_INCLUDE_DIR}/model/loader/invtypes.h"
+    "${LIBRARY_INCLUDE_DIR}/model/loader/mapregions.h")
 
 SET( INCLUDE_COMMON_UTF8
     "${LIBRARY_INCLUDE_DIR}/common/utf8/checked.h"
@@ -104,7 +125,26 @@ SET( SOURCE_LOADER
     "${LIBRARY_SOURCE_DIR}/marshal/loader/marketorders.cpp"
     "${LIBRARY_SOURCE_DIR}/marshal/loader/markethistory.cpp"
     "${LIBRARY_SOURCE_DIR}/marshal/loader/regionbest.cpp"
+    "${LIBRARY_SOURCE_DIR}/marshal/loader/mapregions.cpp"
+    "${LIBRARY_SOURCE_DIR}/marshal/loader/invtypes.cpp"
     "${LIBRARY_SOURCE_DIR}/marshal/loader/csvvisitor.cpp")
+
+SET( SOURCE_GENERATOR
+    "${LIBRARY_SOURCE_DIR}/marshal/generator/dbrow.cpp")
+
+SET( SOURCE_MODEL
+    "${LIBRARY_SOURCE_DIR}/model/marketorder.cpp"
+    "${LIBRARY_SOURCE_DIR}/model/markethistory.cpp"
+    "${LIBRARY_SOURCE_DIR}/model/regionbest.cpp"
+    "${LIBRARY_SOURCE_DIR}/model/mapregion.cpp"
+    "${LIBRARY_SOURCE_DIR}/model/invtype.cpp")
+
+SET( SOURCE_MODEL_LOADER
+    "${LIBRARY_SOURCE_DIR}/model/loader/marketorders.cpp"
+    "${LIBRARY_SOURCE_DIR}/model/loader/markethistory.cpp"
+    "${LIBRARY_SOURCE_DIR}/model/loader/regionbest.cpp"
+    "${LIBRARY_SOURCE_DIR}/model/loader/invtypes.cpp"
+    "${LIBRARY_SOURCE_DIR}/model/loader/mapregions.cpp")
 
 SET( SOURCE_DUMPER          "${SOURCE_DIR}/dumpmarshal.cpp" )
 
@@ -114,16 +154,23 @@ SET( SOURCE_MARKETHISTORY   "${SOURCE_DIR}/markethistory.cpp" )
 
 SET( SOURCE_REGIONBEST      "${SOURCE_DIR}/regionbest.cpp" )
 
+SET( SOURCE_INVTYPES        "${SOURCE_DIR}/invtypes.cpp" )
+
 SET( SOURCE_MEMCHECKMARSHAL "${SOURCE_DIR}/memcheckmarshal.cpp" )
+
+SET( SOURCE_MAPREGIONS      "${SOURCE_DIR}/mapregions.cpp" )
 
 INCLUDE_DIRECTORIES( ${ZLIB_INCLUDE_DIR} )
 
 INCLUDE_DIRECTORIES( ${INCLUDE_DIR} )
 
 ADD_LIBRARY( ${LIBRARY_NAME}
-             ${INCLUDE_PYTHON}     ${SOURCE_PYTHON}
-             ${INCLUDE_MARSHAL}    ${SOURCE_MARSHAL}
-             ${INCLUDE_LOADER}     ${SOURCE_LOADER} )
+             ${INCLUDE_PYTHON}              ${SOURCE_PYTHON}
+             ${INCLUDE_MARSHAL}             ${SOURCE_MARSHAL}
+             ${INCLUDE_LOADER}              ${SOURCE_LOADER}
+             ${INCLUDE_GENERATOR}           ${SOURCE_GENERATOR}
+             ${INCLUDE_MODEL}               ${SOURCE_MODEL}
+             ${INCLUDE_MODEL_LOADER}        ${SOURCE_MODEL_LOADER} )
 
 SET_TARGET_PROPERTIES( ${LIBRARY_NAME} PROPERTIES SOVERSION ${LIBRARY_MAJOR} VERSION ${LIBRARY_VERSION} )
 
@@ -132,6 +179,8 @@ ADD_EXECUTABLE( ${TARGET_MARKETORDERS_NAME}             ${SOURCE_MARKETORDERS} )
 ADD_EXECUTABLE( ${TARGET_MARKETHISTORY_NAME}            ${SOURCE_MARKETHISTORY} )
 ADD_EXECUTABLE( ${TARGET_REGIONBEST_NAME}               ${SOURCE_REGIONBEST} )
 ADD_EXECUTABLE( ${TARGET_MEMCHECKMARSHAL_NAME}          ${SOURCE_MEMCHECKMARSHAL} )
+ADD_EXECUTABLE( ${TARGET_INVTYPES_NAME}                 ${SOURCE_INVTYPES} )
+ADD_EXECUTABLE( ${TARGET_MAPREGIONS_NAME}               ${SOURCE_MAPREGIONS} )
 
 TARGET_LINK_LIBRARIES( ${LIBRARY_NAME}                  ${ZLIB_LIBRARIES} )
 
@@ -140,12 +189,17 @@ TARGET_LINK_LIBRARIES( ${TARGET_MARKETORDERS_NAME}      ${LIBRARY_NAME} )
 TARGET_LINK_LIBRARIES( ${TARGET_MARKETHISTORY_NAME}     ${LIBRARY_NAME} )
 TARGET_LINK_LIBRARIES( ${TARGET_REGIONBEST_NAME}        ${LIBRARY_NAME} )
 TARGET_LINK_LIBRARIES( ${TARGET_MEMCHECKMARSHAL_NAME}   ${LIBRARY_NAME} )
+TARGET_LINK_LIBRARIES( ${TARGET_INVTYPES_NAME}          ${LIBRARY_NAME} )
+TARGET_LINK_LIBRARIES( ${TARGET_MAPREGIONS_NAME}        ${LIBRARY_NAME} )
 
 INSTALL( FILES ${INCLUDE_COMMON}                DESTINATION "include/${LIBRARY_NAME}-${LIBRARY_VERSION}/common" )
 INSTALL( FILES ${INCLUDE_COMMON_UTF8}           DESTINATION "include/${LIBRARY_NAME}-${LIBRARY_VERSION}/common/utf8" )
 INSTALL( FILES ${INCLUDE_PYTHON}                DESTINATION "include/${LIBRARY_NAME}-${LIBRARY_VERSION}/python" )
 INSTALL( FILES ${INCLUDE_MARSHAL}               DESTINATION "include/${LIBRARY_NAME}-${LIBRARY_VERSION}/marshal" )
 INSTALL( FILES ${INCLUDE_LOADER}                DESTINATION "include/${LIBRARY_NAME}-${LIBRARY_VERSION}/loader" )
+INSTALL( FILES ${INCLUDE_GENERATOR}             DESTINATION "include/${LIBRARY_NAME}-${LIBRARY_VERSION}/generator" )
+INSTALL( FILES ${INCLUDE_MODEL}                 DESTINATION "include/${LIBRARY_NAME}-${LIBRARY_VERSION}/model" )
+INSTALL( FILES ${INCLUDE_MODEL_LOADER}          DESTINATION "include/${LIBRARY_NAME}-${LIBRARY_VERSION}/model/loader" )
 
 INSTALL( TARGETS ${LIBRARY_NAME}    LIBRARY     DESTINATION lib )
 
@@ -154,3 +208,5 @@ INSTALL( TARGETS ${TARGET_MARKETORDERS_NAME}    DESTINATION bin )
 INSTALL( TARGETS ${TARGET_MARKETHISTORY_NAME}   DESTINATION bin )
 INSTALL( TARGETS ${TARGET_REGIONBEST_NAME}      DESTINATION bin )
 INSTALL( TARGETS ${TARGET_MEMCHECKMARSHAL_NAME} DESTINATION bin )
+INSTALL( TARGETS ${TARGET_INVTYPES_NAME}        DESTINATION bin )
+INSTALL( TARGETS ${TARGET_MAPREGIONS_NAME}      DESTINATION bin )

@@ -14,6 +14,7 @@
 #ifndef EVETOOLS_MARSHAL_LOADER_CSVVISITOR_H_
 #define EVETOOLS_MARSHAL_LOADER_CSVVISITOR_H_
 
+#include "../generator/dbrow.h"
 #include "../../python/pyvisitor.h"
 
 namespace evetools {

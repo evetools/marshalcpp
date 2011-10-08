@@ -34,7 +34,7 @@ void csvvisitor::visitBase(const python::pybase*) {
 }
 
 void csvvisitor::visitNone(const python::pynone*) {
-	m_stream << "NULL" << std::endl;
+	m_stream << "NULL";
 }
 
 void csvvisitor::visitBool(const python::pybool* object) {
@@ -71,11 +71,39 @@ void csvvisitor::visitDouble(const python::pydouble* object) {
 }
 
 void csvvisitor::visitBuffer(const python::pybuffer* object) {
-	m_stream << object->str();
+	std::stringstream stream;
+	stream << "\"";
+	std::string buf(object->str());
+	std::string::const_iterator itrBegin = buf.begin();
+	std::string::const_iterator itrEnd = buf.end();
+
+	for (; itrBegin != itrEnd; ++itrBegin) {
+		if ((*itrBegin) == '"') {
+			stream << (*itrBegin);
+		}
+		stream << (*itrBegin);
+	}
+	stream << "\"";
+
+	m_stream << stream.str();
 }
 
 void csvvisitor::visitGlobal(const python::pyglobal* object) {
-	m_stream << object->str();
+	std::stringstream stream;
+	stream << "\"";
+	std::string buf(object->str());
+	std::string::const_iterator itrBegin = buf.begin();
+	std::string::const_iterator itrEnd = buf.end();
+
+	for (; itrBegin != itrEnd; ++itrBegin) {
+		if ((*itrBegin) == '"') {
+			stream << "\\";
+		}
+		stream << (*itrBegin);
+	}
+	stream << "\"";
+
+	m_stream << stream.str();
 }
 
 void csvvisitor::visitTuple(const python::pytuple*) {

@@ -17,6 +17,8 @@
 #include <cstring>
 #include <cassert>
 #include <iostream>
+#include <iomanip>
+#include <algorithm>
 #include <fstream>
 #include <stdexcept>
 #include <vector>
