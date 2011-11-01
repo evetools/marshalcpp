@@ -877,7 +877,8 @@ python::pybase* reader::loadPacked() {
 
 	size_t size = descriptor->size();
 
-	unsigned char* obuffer = new unsigned char[size];
+    unsigned char* obuffer = new unsigned char[size];
+    memset(obuffer, 0, size);
 
 	zerouncompress(
 			reinterpret_cast<const unsigned char*>(buffer->asBuffer()->value()),
