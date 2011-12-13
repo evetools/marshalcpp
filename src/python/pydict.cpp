@@ -69,7 +69,7 @@ const pybase* pydict::at(const pybase& key) const {
 	for (; iteratorCurrent != iteratorEnd; ++iteratorCurrent) {
 
 		if ((*iteratorCurrent).first->compare(key) == 0) {
-			return (*iteratorCurrent).second;
+			return ((*iteratorCurrent).second);
 		}
 	}
 

@@ -57,14 +57,14 @@ int pycontainer::compareValues(const pycontainer& rval) const {
 				ret = (*itrBegin)->compare(*(*rvalItrBegin));
 
 				if (ret != 0) {
-					return ret;
+					return (ret);
 				}
 			}
 		} else if (m_container.size() < rval.size()) {
-			return -1;
+			return (-1);
 		}
 
-		return 1;
+		return (1);
 
 	return (0);
 }

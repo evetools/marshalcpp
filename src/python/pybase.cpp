@@ -334,7 +334,7 @@ bool pybase::operator==(const pybase& rval) const {
 }
 
 bool pybase::operator!=(const pybase& rval) const {
-	return !(*this == rval);
+	return (!(*this == rval));
 }
 
 bool pybase::operator<(const pybase& rval) const {
@@ -356,12 +356,12 @@ bool pybase::operator>=(const pybase& rval) const {
 int pybase::compare(const pybase& rval) const {
 
 	if (*this == rval) {
-		return 0;
+		return (0);
 	} else if (*this < rval) {
-		return -1;
+		return (-1);
 	}
 
-	return 1;
+	return (1);
 }
 
 } /* namespace python */

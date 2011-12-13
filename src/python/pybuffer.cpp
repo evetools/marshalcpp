@@ -56,7 +56,7 @@ int pybuffer::compare(const pybase& rval) const {
 	int ret = pybase::compare(rval);
 
 	if (ret == 0 || (isGlobal() || rval.isGlobal())){
-		return str().compare(rval.asBuffer()->str().c_str());
+		return (str().compare(rval.asBuffer()->str().c_str()));
 	}
 
 	return (ret);

@@ -49,12 +49,12 @@ void pydbrowdescriptor::header(pybase* pyBase) {
 const pybase* pydbrowdescriptor::get(size_t pos) const {
 	const pybase* pyHeader = pyobjectex::header();
 	const pytuple* tuple = pyHeader->asTuple()->at(1)->asTuple()->at(0)->asTuple();
-	return tuple->at(pos);
+	return (tuple->at(pos));
 }
 
 const pytuple* pydbrowdescriptor::getColumns() const {
 	const pybase* pyHeader = pyobjectex::header();
-	return pyHeader->asTuple()->at(1)->asTuple()->at(0)->asTuple();
+	return (pyHeader->asTuple()->at(1)->asTuple()->at(0)->asTuple());
 }
 
 void pydbrowdescriptor::init() {

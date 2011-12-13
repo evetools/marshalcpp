@@ -42,11 +42,11 @@ int pylong::compare(const pybase& rval) const {
 
 	if (ret == 0){
 		if (m_value == rval.asLong()->value()) {
-			return 0;
+			return (0);
 		} else if (m_value < rval.asLong()->value()) {
-			return -1;
+			return (-1);
 		}
-		return 1;
+		return (1);
 	}
 
 	return (ret);
