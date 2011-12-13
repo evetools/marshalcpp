@@ -24,8 +24,11 @@
 #include <vector>
 #include <string>
 #include <map>
-#include <unordered_map>
 #include <sstream>
+
+#include <cstddef>
+
+#include <stdint.h>
 
 #include <zlib.h>
 

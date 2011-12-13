@@ -6,7 +6,7 @@ FIND_PACKAGE( "ZLIB" REQUIRED )
 
 SET( BUILD_SHARED_LIBS ON )
 
-SET( CMAKE_CXX_FLAGS "-std=gnu++0x -Wall -Wextra -pedantic-errors -W -Wshadow -Wpointer-arith -Wcast-qual -Winline -Werror" )
+SET( CMAKE_CXX_FLAGS "-Wno-long-long -Wall -Wextra -pedantic-errors -W -Wshadow -Wpointer-arith -Wcast-qual -Winline -Werror" )
 
 SET( CMAKE_CXX_FLAGS_DEBUG "-g3 -O0 ${CMAKE_C_FLAGS}" )
 
