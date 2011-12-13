@@ -15,6 +15,7 @@
 #define EVETOOLS_MARSHAL_ISTREAM_H_
 
 #include <cstring>
+#include <cstddef>
 #include <iostream>
 #include <iomanip>
 #include <fstream>
