@@ -2,7 +2,7 @@ SET( PROJECT_NAME                   "evemarshal" )
 
 SET( PROJECT_MAJOR                  0 )
 SET( PROJECT_MINOR                  0 )
-SET( PROJECT_RELEASE                1 )
+SET( PROJECT_RELEASE                2 )
 SET( PROJECT_VERSION                ${PROJECT_MAJOR}.${PROJECT_MINOR}.${PROJECT_RELEASE})
 
 SET( TARGET_DUMPER_NAME             "dumpmarshal" )

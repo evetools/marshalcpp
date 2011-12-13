@@ -1,6 +1,6 @@
 //==========================================================================
 // Name        : pybase.h
-// Version     : 0.0.1
+// Version     : 0.0.2
 //==========================================================================
 
 /**
@@ -24,8 +24,11 @@
 #include <vector>
 #include <string>
 #include <map>
-#include <unordered_map>
 #include <sstream>
+
+#include <cstddef>
+
+#include <stdint.h>
 
 #include <zlib.h>
 
