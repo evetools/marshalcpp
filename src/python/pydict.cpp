@@ -58,7 +58,8 @@ size_t pydict::size() const {
 }
 
 const pybase* pydict::at(const std::string& key) const {
-	return (at(pybuffer(key.c_str(), key.length())));
+	const pybuffer dkey(key.c_str(), key.length());
+	return (at(dkey));
 }
 
 const pybase* pydict::at(const pybase& key) const {
